@@ -27,6 +27,27 @@
   },
   {
     "ContainingType": "ChatApp.Controllers.GroupController",
+    "Method": "RemoveUserFromGroup",
+    "RelativePath": "api/group/{groupName}/users/{username}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "groupName",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "username",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ChatApp.Controllers.GroupController",
     "Method": "AddUserToGroup",
     "RelativePath": "api/group/addUser",
     "HttpMethod": "POST",

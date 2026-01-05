@@ -59,6 +59,7 @@
         <p><strong>Last Online:</strong> <span id="infoLastOnline"></span></p>
         <p><strong>Groups:</strong> <span id="infoGroups"></span></p>
         <button id="addUserBtn" style="display:none;">➕👤</button>
+        <button id="removeUserBtn" style="display:none;">➖👤</button>
         <button id="closeInfoPopup">Close</button>
     </div>
 
@@ -202,6 +203,25 @@
 
             });
 
+                    connection.on("GroupAdded", (groupName) => {
+            loadGroups(); // update left list
+        });
+
+        connection.on("GroupRemoved", (groupName) => {
+            loadGroups(); // update left list
+
+            if (currentRoom === "#" + groupName) {
+                alert("You were removed from this group");
+
+                currentRoom = null;
+                $("#chatMessages").empty();
+                $("#messageInput").prop("disabled", true);
+                $("#sendButton").prop("disabled", true);
+            }
+        });
+
+
+
                           
             try {
                 console.log("Connecting to SignalR...");
@@ -337,14 +357,20 @@
                 $("#chatDiv").empty();
                 $("#headerSpan").text("👥 " + groupName);
 
+
                 await connection.invoke("JoinRoom", groupName);
 
-                  
-                const group = groups.find(gr => gr.name === groupName);
+                    $("#messageInput").prop("disabled", false);
+        $("#sendButton").prop("disabled", false);
+
+
+                    const group = groups.find(gr => gr.name === groupName);
                 if (group && group.admin === currentUser) {
                     $("#addUserBtn").show();
+                    $("#removeUserBtn").show();
                 } else {
                     $("#addUserBtn").hide();
+                    $("#removeUserBtn").hide();
                 }
             });
         }
@@ -373,8 +399,10 @@
 
                 if (group.admin === currentUser) {
                     $("#addUserBtn").show();
+                    $("#removeUserBtn").show();
                 } else {
                     $("#addUserBtn").hide();
+                    $("#removeUserBtn").hide();
                 }
             }
             catch (err) {
@@ -414,6 +442,36 @@
                 alert("Failed: " + await response.text());
             }
         });
+
+
+            $("#removeUserBtn").click(async () => {
+            if (!currentRoom || !currentRoom.startsWith("#"))
+                return alert("Open a group first!");
+
+            const usernameToRemove = prompt("Enter the username you want to remove:");
+            if (!usernameToRemove) return;
+
+            const groupName = currentRoom.substring(1);
+            const token = sessionStorage.getItem("jwtToken");
+
+            const response = await fetch(
+                `/api/group/${encodeURIComponent(groupName)}/users/${encodeURIComponent(usernameToRemove)}`,
+                {
+                    method: "DELETE",
+                    headers: {
+                        "Authorization": "Bearer " + token
+                    }
+                }
+            );
+
+            if (response.ok) {
+                alert("User removed!");
+                loadGroups();
+            } else {
+                alert("Failed: " + await response.text());
+            }
+        });
+
 
 
         $("#headerSpan").on("click", async function () {

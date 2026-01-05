@@ -4,16 +4,21 @@ using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Collections.Concurrent;
 
 namespace ChatApp.Hubs
 {
     public class ChatHub : Hub
     {
+        public static ConcurrentDictionary<string, string> UserConnections
+        = new ConcurrentDictionary<string, string>();
         private readonly ChatService _chatService;
+        private readonly GroupService _groupService;
 
-        public ChatHub(ChatService chatService)
+        public ChatHub(ChatService chatService, GroupService groupService)
         {
             _chatService = chatService;
+            _groupService = groupService;
         }
 
         private string GetPrivateRoomName(string user1, string user2)
@@ -61,6 +66,10 @@ namespace ChatApp.Hubs
         {
             var username = Context.User.FindFirst(ClaimTypes.Name)?.Value;
 
+            var group = await _groupService.GetGroupByName(groupName);
+            if (group == null || (!group.Members.Contains(username) && group.Admin != username))
+                throw new HubException("You are not a member of this group");
+
             var msg = new ChatMessage
             {
                 Room = groupName,
@@ -71,7 +80,8 @@ namespace ChatApp.Hubs
 
             await _chatService.SaveMessageAsync(msg);
 
-            await Clients.Group(groupName).SendAsync("ReceiveMessage", username, message, msg.Timestamp);
+            await Clients.Group(groupName)
+                .SendAsync("ReceiveMessage", username, message, msg.Timestamp);
         }
 
         public async Task JoinRoom(string groupName)
@@ -88,6 +98,7 @@ namespace ChatApp.Hubs
 
             if (username != null)
             {
+                UserConnections[username] = Context.ConnectionId;
                 await _chatService.UpdateLastOnline(username, DateTime.UtcNow);
             }
 
@@ -100,6 +111,7 @@ namespace ChatApp.Hubs
 
             if (username != null)
             {
+                UserConnections.TryRemove(username, out _);
                 await _chatService.UpdateLastOnline(username, DateTime.UtcNow);
 
             }
