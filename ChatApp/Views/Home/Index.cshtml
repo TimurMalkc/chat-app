@@ -25,8 +25,11 @@
 
             <ul class="roomsUl"></ul>
             <div id="roomsFootDiv">
-                <button id="profile"></button>
-                <button id="newGroupBtn">💬➕</button>
+                <div id="profileDiv">
+                    <img id="profileImg" src="~/images/profile.png" width="25" height="25" />
+                    <p id="profileP"></p>
+                </div>
+                <button id="newGroupBtn"><img src="~/images/chat.png" width="25" height="25" /></button>
             </div>
         </div>
 
@@ -40,7 +43,7 @@
             <div id="barDiv">
                 
                 <input type="text" id="messageBar" name="messageBar" placeholder="Enter your message">
-                <button id="sendButton" type="submit" class="messageButton">📩</button>
+                <button id="sendButton" type="submit" class="messageButton">➤</button>
             </div>
         </div>
     </div>
@@ -120,7 +123,7 @@
                 disconnectIfExists();
                 await startChat();
                 await loadGroups();
-                $("#profile").text(username);
+                $("#profileP").text(username);
 
             } else {
                 alert("Login failed.");
@@ -340,6 +343,7 @@
 
                 await connection.invoke("JoinPrivateChat", otherUser);
                 $("#addUserBtn").hide(); 
+                $("#removeUserBtn").hide();
                 });
             }   
 
