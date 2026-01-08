@@ -35,7 +35,8 @@
 
         <div id="subMainDiv">
             <div id="headerDiv">
-                <span id="headerSpan"></span>
+                <span id="headerSpan">
+                </span>
             </div>
 
             <div id="chatDiv"></div>
@@ -73,6 +74,7 @@
 
         let connection = null;
         let currentRoom = null;
+        let currentRoomType = null;
 
         function disconnectIfExists() {
             if (connection) {
@@ -213,10 +215,11 @@
         connection.on("GroupRemoved", (groupName) => {
             loadGroups(); // update left list
 
-            if (currentRoom === "#" + groupName) {
+            if (currentRoom === groupName) {
                 alert("You were removed from this group");
 
                 currentRoom = null;
+                currentRoomType = null;
                 $("#chatMessages").empty();
                 $("#messageInput").prop("disabled", true);
                 $("#sendButton").prop("disabled", true);
@@ -241,9 +244,9 @@
                 const message = $("#messageBar").val().trim();
                 if (!message) return;
 
-                if (currentRoom.startsWith("#")) {
-                    await connection.invoke("SendGroupMessage", currentRoom.substring(1), message);
-                } else {
+                if (currentRoomType === "group") {
+                    await connection.invoke("SendGroupMessage", currentRoom, message);
+                } else if(currentRoomType === "private") {
                     await connection.invoke("SendPrivateMessage", currentRoom, message);
                 }
 
@@ -260,9 +263,9 @@
                 const message = $(this).val().trim();
                 if (!message) return;
 
-                if (currentRoom.startsWith("#")) {
-                    await connection.invoke("SendGroupMessage", currentRoom.substring(1), message);
-                } else {
+                if (currentRoomType === "group") {
+                    await connection.invoke("SendGroupMessage", currentRoom, message);
+                } else if(currentRoomType === "private") {
                     await connection.invoke("SendPrivateMessage", currentRoom, message);
                 }
                     $(this).val("").focus();
@@ -325,9 +328,11 @@
             });
             if (userResponse.ok) {
                 const users = await userResponse.json();
+                const imgSrcUser = '@Url.Content("~/images/profile.png")';
                 users.forEach(user => {
                     roomsUl.append(`
                         <li class="roomsLi userLi" data-user="${user.username}">
+                            <img id="profileImg" src="${imgSrcUser}" width="25" height="25" />
                             ${user.username}
                         </li>
                     `);
@@ -338,8 +343,12 @@
                 if (currentRoom === otherUser) return;
 
                 currentRoom = otherUser;
+                currentRoomType = "private";
                 $("#chatDiv").empty();
-                $("#headerSpan").text("💬 " + otherUser);
+                $("#headerSpan").empty();
+
+                $("#headerSpan").append(`<img id="profileImg" src="${imgSrcUser}" width="25" height="25" />`);
+                $("#headerSpan").append(otherUser);
 
                 await connection.invoke("JoinPrivateChat", otherUser);
                 $("#addUserBtn").hide(); 
@@ -348,34 +357,41 @@
             }   
 
 
-                
-            groups.forEach(g => {
-                roomsUl.append(`<li class="roomsLi groupLi">#${g.name}</li>`);
+            const imgSrcGroup = '@Url.Content("~/images/group.png")';
+            groups.forEach(g => {     
+            roomsUl.append(
+                `<li class="roomsLi groupLi" data-group="${g.name}">
+                    <img id="profileImg" src="${imgSrcGroup}" width="25" height="25" />
+                    ${g.name}
+                </li>`);
             });
 
                 
             $(".groupLi").off("click").on("click", async function () {
-                const groupName = $(this).text().replace("#", "");
-                currentRoom = "#" + groupName;
+                const groupName = $(this).data("group");
+                currentRoom = groupName;
+                currentRoomType = "group";
 
                 $("#chatDiv").empty();
-                $("#headerSpan").text("👥 " + groupName);
+                $("#headerSpan").empty();
 
+                $("#headerSpan").append(`<img id="profileImg" src="${imgSrcGroup}" width="25" height="25" />`);
+                $("#headerSpan").append(groupName);
 
                 await connection.invoke("JoinRoom", groupName);
 
-                    $("#messageInput").prop("disabled", false);
-        $("#sendButton").prop("disabled", false);
+                $("#messageInput").prop("disabled", false);
+                $("#sendButton").prop("disabled", false);
 
 
-                    const group = groups.find(gr => gr.name === groupName);
-                if (group && group.admin === currentUser) {
-                    $("#addUserBtn").show();
-                    $("#removeUserBtn").show();
-                } else {
-                    $("#addUserBtn").hide();
-                    $("#removeUserBtn").hide();
-                }
+                const group = groups.find(gr => gr.name === groupName);
+                    if (group && group.admin === currentUser) {
+                        $("#addUserBtn").show();
+                        $("#removeUserBtn").show();
+                    } else {
+                        $("#addUserBtn").hide();
+                        $("#removeUserBtn").hide();
+                    }
             });
         }
 
@@ -424,7 +440,7 @@
             const usernameToAdd = prompt("Enter the username you want to add:");
             if (!usernameToAdd) return;
 
-            const groupName = currentRoom.substring(1);
+            const groupName = currentRoom;
             const token = sessionStorage.getItem("jwtToken");
 
             const response = await fetch(`/api/group/addUser`, {
@@ -455,7 +471,7 @@
             const usernameToRemove = prompt("Enter the username you want to remove:");
             if (!usernameToRemove) return;
 
-            const groupName = currentRoom.substring(1);
+            const groupName = currentRoom;
             const token = sessionStorage.getItem("jwtToken");
 
             const response = await fetch(
@@ -479,14 +495,10 @@
 
 
         $("#headerSpan").on("click", async function () {
-            const raw = $("#headerSpan").text().trim();
-            if (!raw) return;
+            const username = $("#headerSpan").text().trim();
 
-            const privatePrefix = "💬 ";
-            const groupPrefix = "👥 ";
-
-            if (raw.startsWith(privatePrefix)) {
-                const username = raw.slice(privatePrefix.length).trim();
+            if (currentRoomType === "private") {
+                const username = $("#headerSpan").text().trim();
                 if (!username) return;
 
                 const token = sessionStorage.getItem("jwtToken");
@@ -508,8 +520,8 @@
             }
 
             
-            if (raw.startsWith(groupPrefix)) {
-                const groupName = raw.slice(groupPrefix.length).trim();
+            if (currentRoomType === "group") {
+                const groupName = $("#headerSpan").text().trim();
                 if (!groupName) return;
 
                 const token = sessionStorage.getItem("jwtToken");
@@ -530,7 +542,6 @@
                 return;
             }
 
-            const username = raw;
             const token = sessionStorage.getItem("jwtToken");
             const res = await fetch(`/api/user/info/${encodeURIComponent(username)}`, {
                 headers: { "Authorization": "Bearer " + token }

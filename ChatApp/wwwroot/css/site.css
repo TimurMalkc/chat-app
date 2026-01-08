@@ -89,7 +89,8 @@ body {
     border-bottom: 0.1rem solid var(--dark);
 }
 
-#headerSpan {
+#headerSpan {   
+    display: flex;
     background-color: var(--light);
     border-radius: 10px;
     padding-left: 5px;
@@ -142,7 +143,7 @@ body {
 }
 
 .roomsLi {
-    background-color: var(--light);
+    background-color: var(--darklight);
     color: rgb(236, 236, 236);
     border-radius: 15px;
     margin: 2%;
@@ -151,11 +152,16 @@ body {
     overflow-wrap: break-word;
     text-align: left;
     text-indent: 10px;
+    display: flex;
 }
 
 .roomsLi:active {
     background-color: var(--lightlightClicked);
 }
+
+    .roomsLi:hover {
+        background-color: var(--lightlightClicked);
+    }
 
 .roomsUl {
     overflow-y: hidden;

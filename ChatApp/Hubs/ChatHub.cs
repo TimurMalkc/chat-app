@@ -65,8 +65,8 @@ namespace ChatApp.Hubs
         public async Task SendGroupMessage(string groupName, string message)
         {
             var username = Context.User.FindFirst(ClaimTypes.Name)?.Value;
-
             var group = await _groupService.GetGroupByName(groupName);
+
             if (group == null || (!group.Members.Contains(username) && group.Admin != username))
                 throw new HubException("You are not a member of this group");
 
