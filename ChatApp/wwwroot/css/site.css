@@ -249,14 +249,6 @@ body {
     color: rgb(223, 223, 223);
 }
 
-#settingsBtn {
-    font-size: 25px;
-    margin: 5px;
-    border-radius: 10px;
-    background-color: rgb(41, 41, 41);
-    color: rgb(223, 223, 223);
-}
-
 #profileDiv {
     display: flex;
     font-size: 25px;
@@ -268,6 +260,11 @@ body {
     border: none;
     align-items: center;
 }
+
+#profileDiv:hover {
+    background-color: var(--darklight);
+}
+
 
 #profileP {
     font-size: 25px;
@@ -297,6 +294,19 @@ body {
 }
 
 #newGroupBtn:hover {
+    background-color: var(--darklight);
+}
+
+#logOutBtn {
+    font-size: 25px;
+    margin: 5px;
+    border-radius: 10px;
+    padding-top: 5px;
+    background-color: var(--light);
+    border: none;
+}
+
+#logOutBtn:hover {
     background-color: var(--darklight);
 }
 

@@ -1,7 +1,7 @@
-wwwroot\css\site.css
 wwwroot\favicon.ico
 wwwroot\images\chat.png
 wwwroot\images\group.png
+wwwroot\images\logout.png
 wwwroot\images\profile.png
 wwwroot\js\signalr\dist\browser\signalr.js
 wwwroot\js\signalr\dist\browser\signalr.min.js
@@ -63,3 +63,4 @@ wwwroot\lib\jquery\dist\jquery.js
 wwwroot\lib\jquery\dist\jquery.min.js
 wwwroot\lib\jquery\dist\jquery.min.map
 wwwroot\lib\jquery\LICENSE.txt
+wwwroot\css\site.css

@@ -30,7 +30,7 @@
                     <p id="profileP"></p>
                 </div>
                 <button id="newGroupBtn"><img src="~/images/chat.png" width="25" height="25" /></button>
-                <button id="logOutBtn">🚪</button>
+                <button id="logOutBtn"><img src="~/images/logout.png" width="25" height="25" /></button>
             </div>
         </div>
 
@@ -63,6 +63,8 @@
         <p id="nameP">Name: <span id="infoName"></span></p>
         <p id="lastOnlineP">Last Online: <span id="infoLastOnline"></span></p>
         <p id="groupsP">Groups: <span id="infoGroups"></span></p>
+        <p id="adminP">Admin: <span id="infoAdmin"></p>
+        <p id="membersP">Members: <span id="infoMembers"></p>
         <button id="addUserBtn" style="display:none;">➕👤</button>
         <button id="removeUserBtn" style="display:none;">➖👤</button>
         <button id="deleteGroupBtn" style="display:none; background-color: darkred; color: white;">Delete Group</button>
@@ -489,10 +491,12 @@
                     $("#addUserBtn").show();
                     $("#removeUserBtn").show();
                     $("#deleteGroupBtn").show();
+                    $("#leaveGroupBtn").hide();
                 } else {
                     $("#addUserBtn").hide();
                     $("#removeUserBtn").hide();
                     $("#deleteGroupBtn").hide();
+                    $("#leaveGroupBtn").show();
                 }
             }
             catch (err) {
@@ -535,7 +539,7 @@
 
 
             $("#removeUserBtn").click(async () => {
-            if (!currentRoom || !currentRoom.startsWith("#"))
+            if (!currentRoom || currentRoomType !== "group")
                 return alert("Open a group first!");
 
             const usernameToRemove = prompt("Enter the username you want to remove:");
@@ -585,6 +589,10 @@
                 $("#infoName").text(data.username ?? username);
                 $("#lastOnlineP").show();
                 $("#groupsP").show();
+                $("#leaveGroupBtn").hide();
+                $("#deleteGroupBtn").hide();
+                $("#adminP").hide();
+                $("#membersP").hide();
                 $("#infoLastOnline").text(data.lastOnline ? new Date(data.lastOnline).toLocaleString() : "—");
                 $("#infoGroups").text((data.groups && data.groups.length) ? data.groups.join(", ") : "—");
                 $("#userInfoPopup").fadeIn(150);
@@ -608,9 +616,12 @@
 
                 const g = await res.json();
                 $("#infoName").text(g.name ?? groupName);
+                $("#adminP").show();
+                $("#membersP").show();
                 $("#lastOnlineP").hide();
-                
-                $("#infoGroups").text(`Admin: ${g.admin ?? "—"}\nMembers: ${ (g.members && g.members.length) ? g.members.join(", ") : "—" }`);
+                $("#groupsP").hide();
+                $("#infoAdmin").text(`${g.admin ?? "—"}`);
+                $("#infoMembers").text(`${ (g.members && g.members.length) ? g.members.join(", ") : "—" }`);
                 $("#userInfoPopup").fadeIn(150);
                 return;
             }
@@ -638,7 +649,7 @@
         });
 
 
-                $("#profileP").on("click", async function() {
+                $("#profileDiv").on("click", async function() {
             const username = $("#profileP").text().trim();
 
             // Fill popup with own data
