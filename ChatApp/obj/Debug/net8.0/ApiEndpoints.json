@@ -79,6 +79,48 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ChatApp.Controllers.GroupController",
+    "Method": "DeleteGroup",
+    "RelativePath": "api/group/delete/{groupName}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "groupName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ChatApp.Controllers.GroupController",
+    "Method": "LeaveGroup",
+    "RelativePath": "api/group/leave",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "ChatApp.Controllers.GroupController\u002BLeaveGroupDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ChatApp.Controllers.UserController",
+    "Method": "DeleteProfile",
+    "RelativePath": "api/User/delete",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ChatApp.Controllers.UserController",
     "Method": "Disconnect",
     "RelativePath": "api/User/disconnect",

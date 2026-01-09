@@ -35,5 +35,15 @@ namespace ChatApp.Services
         {
             await _groups.ReplaceOneAsync(g => g.Id == group.Id, group);
         }
+
+
+        public async Task<bool> DeleteGroupByName(string groupName)
+        {
+            // Assuming _groups is your IMongoCollection<ChatGroup>
+            var result = await _groups.DeleteOneAsync(g => g.Name == groupName);
+            return result.DeletedCount > 0;
+        }
+
+
     }
 }

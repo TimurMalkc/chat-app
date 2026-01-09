@@ -7,32 +7,32 @@
       "RelativeMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|solutionrelative:chatapp\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|c:\\users\\timur\\desktop\\depo\\coding\\dotnetworkspace\\chatapp\\chatapp\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|solutionrelative:chatapp\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|c:\\users\\timur\\desktop\\depo\\coding\\dotnetworkspace\\chatapp\\chatapp\\controllers\\groupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|solutionrelative:chatapp\\controllers\\groupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|c:\\users\\timur\\desktop\\depo\\coding\\dotnetworkspace\\chatapp\\chatapp\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|solutionrelative:chatapp\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|c:\\users\\timur\\desktop\\depo\\coding\\dotnetworkspace\\chatapp\\chatapp\\services\\groupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|solutionrelative:chatapp\\services\\groupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|c:\\users\\timur\\desktop\\depo\\coding\\dotnetworkspace\\chatapp\\chatapp\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|solutionrelative:chatapp\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|c:\\users\\timur\\desktop\\depo\\coding\\dotnetworkspace\\chatapp\\chatapp\\services\\chatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|solutionrelative:chatapp\\services\\chatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|c:\\users\\timur\\desktop\\depo\\coding\\dotnetworkspace\\chatapp\\chatapp\\controllers\\groupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|solutionrelative:chatapp\\controllers\\groupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|c:\\users\\timur\\desktop\\depo\\coding\\dotnetworkspace\\chatapp\\chatapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|solutionrelative:chatapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|c:\\users\\timur\\desktop\\depo\\coding\\dotnetworkspace\\chatapp\\chatapp\\services\\groupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|solutionrelative:chatapp\\services\\groupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|c:\\users\\timur\\desktop\\depo\\coding\\dotnetworkspace\\chatapp\\chatapp\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|solutionrelative:chatapp\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|c:\\users\\timur\\desktop\\depo\\coding\\dotnetworkspace\\chatapp\\chatapp\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|solutionrelative:chatapp\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|c:\\users\\timur\\desktop\\depo\\coding\\dotnetworkspace\\chatapp\\chatapp\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|solutionrelative:chatapp\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|c:\\users\\timur\\desktop\\depo\\coding\\dotnetworkspace\\chatapp\\chatapp\\controllers\\userlistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -43,12 +43,16 @@
       "RelativeMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|solutionrelative:chatapp\\models\\chatmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|c:\\users\\timur\\desktop\\depo\\coding\\dotnetworkspace\\chatapp\\chatapp\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|solutionrelative:chatapp\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|c:\\users\\timur\\desktop\\depo\\coding\\dotnetworkspace\\chatapp\\chatapp\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|solutionrelative:chatapp\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|c:\\users\\timur\\desktop\\depo\\coding\\dotnetworkspace\\chatapp\\chatapp\\models\\users.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|solutionrelative:chatapp\\models\\users.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|c:\\users\\timur\\desktop\\depo\\coding\\dotnetworkspace\\chatapp\\chatapp\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|solutionrelative:chatapp\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|c:\\users\\timur\\desktop\\depo\\coding\\dotnetworkspace\\chatapp\\chatapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -57,10 +61,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|c:\\users\\timur\\desktop\\depo\\coding\\dotnetworkspace\\chatapp\\chatapp\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|solutionrelative:chatapp\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|c:\\users\\timur\\desktop\\depo\\coding\\dotnetworkspace\\chatapp\\chatapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|solutionrelative:chatapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -80,7 +80,7 @@
               "RelativeDocumentMoniker": "ChatApp\\Views\\Home\\Index.cshtml",
               "ToolTip": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Views\\Home\\Index.cshtml*",
               "RelativeToolTip": "ChatApp\\Views\\Home\\Index.cshtml*",
-              "ViewState": "AgIAABgCAAAAAAAAAAAIwBQCAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAOYCAAAAAAAAAAAAAOgCAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-11-24T23:50:17.216Z",
               "IsPinned": true,
@@ -88,42 +88,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "site.css",
               "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\wwwroot\\css\\site.css",
               "RelativeDocumentMoniker": "ChatApp\\wwwroot\\css\\site.css",
               "ToolTip": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\wwwroot\\css\\site.css",
               "RelativeToolTip": "ChatApp\\wwwroot\\css\\site.css",
-              "ViewState": "AgIAAFAAAAAAAAAAAAAAAFAAAAAKAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAOkAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2025-11-24T23:51:18.239Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "GroupService.cs",
               "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Services\\GroupService.cs",
               "RelativeDocumentMoniker": "ChatApp\\Services\\GroupService.cs",
               "ToolTip": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Services\\GroupService.cs",
               "RelativeToolTip": "ChatApp\\Services\\GroupService.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAA3wAcAAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAACkAAAAAAAAAAAAswCwAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-24T23:50:35.271Z",
               "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ChatHub.cs",
-              "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Hubs\\ChatHub.cs",
-              "RelativeDocumentMoniker": "ChatApp\\Hubs\\ChatHub.cs",
-              "ToolTip": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Hubs\\ChatHub.cs",
-              "RelativeToolTip": "ChatApp\\Hubs\\ChatHub.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAAAYwEQAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "ChatService.cs",
+              "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Services\\ChatService.cs",
+              "RelativeDocumentMoniker": "ChatApp\\Services\\ChatService.cs",
+              "ToolTip": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Services\\ChatService.cs",
+              "RelativeToolTip": "ChatApp\\Services\\ChatService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-24T23:50:32.664Z"
+              "WhenOpened": "2025-11-24T23:50:34.8Z"
             },
             {
               "$type": "Document",
@@ -139,15 +138,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "ChatApp\\Controllers\\UserController.cs",
               "ToolTip": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Controllers\\UserController.cs",
               "RelativeToolTip": "ChatApp\\Controllers\\UserController.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABQAAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAACUAAAAAAAAAAAAQwC0AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-24T23:50:31.09Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GroupController.cs",
+              "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Controllers\\GroupController.cs",
+              "RelativeDocumentMoniker": "ChatApp\\Controllers\\GroupController.cs",
+              "ToolTip": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Controllers\\GroupController.cs",
+              "RelativeToolTip": "ChatApp\\Controllers\\GroupController.cs",
+              "ViewState": "AgIAAL4AAAAAAAAAAAAAAOAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T23:50:28.463Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -157,73 +169,13 @@
               "RelativeDocumentMoniker": "ChatApp\\Controllers\\HomeController.cs",
               "ToolTip": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Controllers\\HomeController.cs",
               "RelativeToolTip": "ChatApp\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABsAAAAAAAAAAAAYwB8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-24T23:50:30.645Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "GroupController.cs",
-              "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Controllers\\GroupController.cs",
-              "RelativeDocumentMoniker": "ChatApp\\Controllers\\GroupController.cs",
-              "ToolTip": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Controllers\\GroupController.cs",
-              "RelativeToolTip": "ChatApp\\Controllers\\GroupController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAYwHgAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-24T23:50:28.463Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "ChatService.cs",
-              "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Services\\ChatService.cs",
-              "RelativeDocumentMoniker": "ChatApp\\Services\\ChatService.cs",
-              "ToolTip": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Services\\ChatService.cs",
-              "RelativeToolTip": "ChatApp\\Services\\ChatService.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAwAAAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-24T23:50:34.8Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ChatMessage.cs",
-              "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Models\\ChatMessage.cs",
-              "RelativeDocumentMoniker": "ChatApp\\Models\\ChatMessage.cs",
-              "ToolTip": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Models\\ChatMessage.cs",
-              "RelativeToolTip": "ChatApp\\Models\\ChatMessage.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-24T23:50:33.141Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "ErrorViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Models\\ErrorViewModel.cs",
-              "RelativeDocumentMoniker": "ChatApp\\Models\\ErrorViewModel.cs",
-              "ToolTip": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Models\\ErrorViewModel.cs",
-              "RelativeToolTip": "ChatApp\\Models\\ErrorViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-08T12:52:36.631Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Users.cs",
-              "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Models\\Users.cs",
-              "RelativeDocumentMoniker": "ChatApp\\Models\\Users.cs",
-              "ToolTip": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Models\\Users.cs",
-              "RelativeToolTip": "ChatApp\\Models\\Users.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-24T23:50:33.948Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\appsettings.json",
               "RelativeDocumentMoniker": "ChatApp\\appsettings.json",
@@ -235,7 +187,55 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 9,
+              "Title": "ChatMessage.cs",
+              "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Models\\ChatMessage.cs",
+              "RelativeDocumentMoniker": "ChatApp\\Models\\ChatMessage.cs",
+              "ToolTip": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Models\\ChatMessage.cs",
+              "RelativeToolTip": "ChatApp\\Models\\ChatMessage.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T23:50:33.141Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Users.cs",
+              "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Models\\Users.cs",
+              "RelativeDocumentMoniker": "ChatApp\\Models\\Users.cs",
+              "ToolTip": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Models\\Users.cs",
+              "RelativeToolTip": "ChatApp\\Models\\Users.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T23:50:33.948Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ChatHub.cs",
+              "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Hubs\\ChatHub.cs",
+              "RelativeDocumentMoniker": "ChatApp\\Hubs\\ChatHub.cs",
+              "ToolTip": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Hubs\\ChatHub.cs",
+              "RelativeToolTip": "ChatApp\\Hubs\\ChatHub.cs",
+              "ViewState": "AgIAAHAAAAAAAAAAAAAAAHkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T23:50:32.664Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ErrorViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Models\\ErrorViewModel.cs",
+              "RelativeDocumentMoniker": "ChatApp\\Models\\ErrorViewModel.cs",
+              "ToolTip": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Models\\ErrorViewModel.cs",
+              "RelativeToolTip": "ChatApp\\Models\\ErrorViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-08T12:52:36.631Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "ChatApp\\Properties\\launchSettings.json",
@@ -247,7 +247,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Program.cs",
               "RelativeDocumentMoniker": "ChatApp\\Program.cs",

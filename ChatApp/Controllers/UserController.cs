@@ -1,7 +1,9 @@
-﻿using ChatApp.Models;
+﻿using ChatApp.Hubs;
+using ChatApp.Models;
 using ChatApp.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
 using System.IdentityModel.Tokens.Jwt;
@@ -19,12 +21,15 @@ namespace ChatApp.Controllers
         private readonly IConfiguration _config;
         private readonly ChatService _userService;
         private readonly GroupService _groupService;
+        private readonly IHubContext<ChatHub> _hubContext;
 
-        public UserController(IConfiguration config, ChatService userService, GroupService groupService)
+        public UserController(IConfiguration config, ChatService userService, GroupService groupService,
+            IHubContext<ChatHub> hubContext)
         {
             _config = config;
             _userService = userService;
             _groupService = groupService;
+            _hubContext = hubContext;
 
             var client = new MongoClient(config.GetConnectionString("MongoDb"));
             var database = client.GetDatabase("ChatAppDB");
@@ -43,6 +48,7 @@ namespace ChatApp.Controllers
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password)
             };
 
+            await _hubContext.Clients.All.SendAsync("UserRegistered", dto.Username);
             await _users.InsertOneAsync(user);
             return Ok("User registered");
         }
@@ -127,7 +133,40 @@ namespace ChatApp.Controllers
             await _userService.UpdateLastOnline(username, DateTime.UtcNow);
             return Ok();
         }
+
+
+        [Authorize] // Ensure only logged-in users can access this
+        [HttpDelete("delete")]
+        public async Task<IActionResult> DeleteProfile()
+        {
+            // Get the username from the current JWT token
+            var username = User.FindFirst(System.Security.Claims.ClaimTypes.Name)?.Value;
+
+            if (string.IsNullOrEmpty(username))
+                return Unauthorized();
+
+            // Delete the user from MongoDB
+            var result = await _users.DeleteOneAsync(u => u.Username == username);
+
+            if (result.DeletedCount > 0)
+            {
+                // Real-time update: Notify all clients to refresh their user list
+                await _hubContext.Clients.All.SendAsync("UserDeleted", username);
+                return Ok("Profile deleted successfully.");
+            }
+
+            return BadRequest("Could not delete user.");
+        }
+
+
+
+
+
     }
+
+
+
+
 
     public class UserRegisterDto
     {
