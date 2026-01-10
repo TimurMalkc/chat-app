@@ -58,29 +58,35 @@
         <button id="registerBtn" class="loginButton">Register</button>
     </div>
 
-    <div id="userInfoPopup">
+    <div id="userInfoPopup" style="display:none;">
         <h3 id="userH">User Info</h3>
+
         <p id="nameP">Name: <span id="infoName"></span></p>
         <p id="lastOnlineP">Last Online: <span id="infoLastOnline"></span></p>
-        <p id="groupsP">Groups: <span id="infoGroups"></span></p>
-        <p id="adminP">Admin: <span id="infoAdmin"></p>
-        <p id="membersP">Members: <span id="infoMembers"></p>
-        <button id="addUserBtn" style="display:none;">➕👤</button>
-        <button id="removeUserBtn" style="display:none;">➖👤</button>
-        <button id="deleteGroupBtn" style="display:none; background-color: darkred; color: white;">Delete Group</button>
-        <button id="leaveGroupBtn" style="display:none; background-color: #f0ad4e; color: white;">Leave Group</button>
-        <button id="closeInfoPopup">Close</button>
+        <p id="groupsP">Mutual Groups: <span id="infoGroups"></span></p>
+
+        <p id="adminP">Admin: <span id="infoAdmin"></span></p>
+
+        <div id="membersContainer" style="margin-top:10px;">
+            <strong>Members:</strong>
+            <div id="infoMembers" style="max-height: 150px; overflow-y: auto;"></div>
+        </div>
+
+        <button id="addUserBtn" style="display:none;">Add User</button>
+        <button id="deleteGroupBtn" style="display:none;">Delete Group</button>
+        <button id="leaveGroupBtn" style="display:none;">Leave Group</button>
+
+        <button id="closeInfoPopup"><img src="~/images/close.png" width="25" height="25" /></button>
     </div>
 
-    <div id="profilePopup">
-        <h3 id="infoName"></h3>
-        <p id="infoGroups"></p>
 
-        <button id="deleteProfileBtn" style="display:none; background-color: #ff4444; color: white; margin-top: 10px; padding: 5px;">
+    <div id="profilePopup">
+
+        <button id="deleteProfileBtn">
             Delete My Account
         </button>
 
-        <button id="closeProfilePopup">Close</button>
+        <button id="closeProfilePopup"><img src="~/images/close.png" width="25" height="25" /></button>
     </div>
 
     <script>
@@ -507,9 +513,9 @@
 
 
 
-        $("#addUserBtn").click(async () => {
-            if (!currentRoom || currentRoomType !== "group")
-                return alert("Open a group first!");
+                $("#addUserBtn").off("click").on("click", async () => {
+            // 1. Basic Checks
+            if (!currentRoom) return alert("Open a group first!");
 
             const usernameToAdd = prompt("Enter the username you want to add:");
             if (!usernameToAdd) return;
@@ -517,7 +523,8 @@
             const groupName = currentRoom;
             const token = sessionStorage.getItem("jwtToken");
 
-            const response = await fetch(`/api/group/addUser`, {
+            // 2. Send API Request
+            const response = await fetch("/api/group/addUser", {
                 method: "POST",
                 headers: {
                     "Authorization": "Bearer " + token,
@@ -531,7 +538,53 @@
 
             if (response.ok) {
                 alert("User added!");
-                loadGroups();
+
+                // --- INSTANT UI UPDATE START ---
+
+                // Find the existing list container
+                const membersList = $("#infoMembers ul");
+
+                // If the list said "No members", clear that first
+                if (membersList.text().includes("No members")) {
+                    membersList.empty();
+                }
+
+                // Create the new list item
+                const li = $("<li>").css({ "margin-bottom": "5px" });
+                li.append(`<span>${usernameToAdd} </span>`);
+
+                const imgSrcClose = '@Url.Content("~/images/close.png")';
+                // Since you are the Admin, add the Remove Button (❌) immediately
+                const removeBtn = $(`<span style="cursor:pointer; margin-left:10px;" title="Remove User"><img src="${imgSrcClose}" width="15" height="15" /></span>`);
+
+                // Attach the specific remove logic for this new user
+                removeBtn.click(async function() {
+                     if (!confirm(`Remove ${usernameToAdd} from the group?`)) return;
+
+                     const delResponse = await fetch(
+                        `/api/group/${encodeURIComponent(groupName)}/users/${encodeURIComponent(usernameToAdd)}`,
+                        {
+                            method: "DELETE",
+                            headers: { "Authorization": "Bearer " + token }
+                        }
+                    );
+
+                    if (delResponse.ok) {
+                        li.remove(); // Remove immediately
+                        loadGroups();
+                    } else {
+                        alert("Failed: " + await delResponse.text());
+                    }
+                });
+
+                li.append(removeBtn);
+
+                // Add to the list
+                membersList.append(li);
+
+                // --- INSTANT UI UPDATE END ---
+
+                loadGroups(); // Update background data (left sidebar)
             } else {
                 alert("Failed: " + await response.text());
             }
@@ -568,80 +621,137 @@
 
 
 
-        $("#headerSpan").on("click", async function () {
-            const username = $("#headerSpan").text().trim();
+                              $("#headerSpan").on("click", async function () {
+            const nameToCheck = $("#headerSpan").text().trim();
+            if (!nameToCheck) return;
 
+            // --- CASE 1: PRIVATE CHAT (VIEWING USER INFO) ---
             if (currentRoomType === "private") {
-                const username = $("#headerSpan").text().trim();
-                if (!username) return;
-
                 const token = sessionStorage.getItem("jwtToken");
-                const res = await fetch(`/api/user/info/${encodeURIComponent(username)}`, {
+                const res = await fetch(`/api/user/info/${encodeURIComponent(nameToCheck)}`, {
                     headers: { "Authorization": "Bearer " + token }
                 });
 
-                if (!res.ok) {
-                    alert("User info not found.");
-                    return;
-                }
-
+                if (!res.ok) { alert("User info not found."); return; }
                 const data = await res.json();
-                $("#infoName").text(data.username ?? username);
-                $("#lastOnlineP").show();
-                $("#groupsP").show();
-                $("#leaveGroupBtn").hide();
-                $("#deleteGroupBtn").hide();
-                $("#adminP").hide();
-                $("#membersP").hide();
+
+                // Show/Hide relevant fields
+                $("#nameP").show(); $("#lastOnlineP").show(); $("#groupsP").show();
+                $("#adminP").hide(); $("#membersContainer").hide();
+
+                $("#infoName").text(data.username ?? nameToCheck);
                 $("#infoLastOnline").text(data.lastOnline ? new Date(data.lastOnline).toLocaleString() : "—");
-                $("#infoGroups").text((data.groups && data.groups.length) ? data.groups.join(", ") : "—");
+
+                // --- NEW: BUILD MUTUAL GROUPS LIST ---
+                const groupContainer = $("#infoGroups");
+                groupContainer.empty(); // Clear previous content
+
+                if (data.groups && data.groups.length > 0) {
+                    const ul = $("<ul>").css({ "padding-left": "20px", "margin": "5px 0" });
+                    data.groups.forEach(grp => {
+                        const li = $("<li>").text(grp).css({ "margin-bottom": "5px" });
+                        ul.append(li);
+                    });
+                    groupContainer.append(ul);
+                } else {
+                    groupContainer.text("—");
+                }
+                // -------------------------------------
+
+                // Hide Group Buttons
+                $("#addUserBtn").hide(); $("#deleteGroupBtn").hide(); $("#leaveGroupBtn").hide();
+
                 $("#userInfoPopup").fadeIn(150);
                 return;
             }
 
-            
+            // --- CASE 2: GROUP CHAT (VIEWING GROUP MEMBERS) ---
             if (currentRoomType === "group") {
-                const groupName = $("#headerSpan").text().trim();
-                if (!groupName) return;
-
                 const token = sessionStorage.getItem("jwtToken");
-                const res = await fetch(`/api/group/${encodeURIComponent(groupName)}`, {
+                const res = await fetch(`/api/group/${encodeURIComponent(nameToCheck)}`, {
                     headers: { "Authorization": "Bearer " + token }
                 });
 
-                if (!res.ok) {
-                    alert("Group info not found.");
-                    return;
+                if (!res.ok) { alert("Group info not found."); return; }
+                const g = await res.json();
+
+                // Show/Hide relevant fields
+                $("#nameP").show(); $("#lastOnlineP").hide(); $("#groupsP").hide();
+                $("#adminP").show(); $("#membersContainer").show();
+
+                $("#infoName").text(g.name);
+                $("#infoAdmin").text(g.admin);
+
+                // --- CHECK IF I AM ADMIN ---
+                const tokenPayload = JSON.parse(atob(token.split('.')[1]));
+                const currentUser = tokenPayload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
+                const isAdmin = (g.admin === currentUser);
+
+                // --- BUILD MEMBER LIST ---
+                const container = $("#infoMembers");
+                container.empty();
+
+                const ul = $("<ul>").css({ "padding-left": "20px", "margin": "5px 0" });
+
+                if (g.members && g.members.length > 0) {
+                    g.members.forEach(member => {
+                        const li = $("<li>").css({ "margin-bottom": "5px" });
+
+                        // Add Name
+                        li.append(`<span>${member} </span>`);
+
+                        // IF ADMIN: Add Remove Button (❌)
+                        if (isAdmin && member !== currentUser) {
+                            const imgSrcClose = '@Url.Content("~/images/close.png")';
+                            const removeBtn = $(`<span style="cursor:pointer; margin-left:10px;" title="Remove User"><img src="${imgSrcClose}" width="15" height="15" /></span>`);
+
+                            // ATTACH CLICK EVENT IMMEDIATELY
+                            removeBtn.click(async function() {
+                                 if (!confirm(`Remove ${member} from the group?`)) return;
+
+                                 // Call API
+                                 const response = await fetch(
+                                    `/api/group/${encodeURIComponent(g.name)}/users/${encodeURIComponent(member)}`,
+                                    {
+                                        method: "DELETE",
+                                        headers: { "Authorization": "Bearer " + token }
+                                    }
+                                );
+
+                                if (response.ok) {
+                                    // Success: Remove the <li> from the UI immediately
+                                    li.remove();
+                                    // Also refresh background data
+                                    loadGroups();
+                                } else {
+                                    alert("Failed: " + await response.text());
+                                }
+                            });
+
+                            li.append(removeBtn);
+                        }
+                        ul.append(li);
+                    });
+                } else {
+                    ul.append("<li>No members</li>");
+                }
+                container.append(ul);
+
+                // --- BUTTON VISIBILITY ---
+                if (isAdmin) {
+                    $("#addUserBtn").show();
+                    $("#deleteGroupBtn").show();
+                    $("#leaveGroupBtn").show();
+                } else {
+                    $("#addUserBtn").hide();
+                    $("#deleteGroupBtn").hide();
+                    $("#leaveGroupBtn").show();
                 }
 
-                const g = await res.json();
-                $("#infoName").text(g.name ?? groupName);
-                $("#adminP").show();
-                $("#membersP").show();
-                $("#lastOnlineP").hide();
-                $("#groupsP").hide();
-                $("#infoAdmin").text(`${g.admin ?? "—"}`);
-                $("#infoMembers").text(`${ (g.members && g.members.length) ? g.members.join(", ") : "—" }`);
                 $("#userInfoPopup").fadeIn(150);
-                return;
             }
-
-            const token = sessionStorage.getItem("jwtToken");
-            const res = await fetch(`/api/user/info/${encodeURIComponent(username)}`, {
-                headers: { "Authorization": "Bearer " + token }
-            });
-
-            if (!res.ok) {
-                alert("User info not found.");
-                return;
-            }
-
-            const data = await res.json();
-            $("#infoName").text(data.username ?? username);
-            $("#infoLastOnline").text(data.lastOnline ? new Date(data.lastOnline).toLocaleString() : "—");
-            $("#infoGroups").text((data.groups && data.groups.length) ? data.groups.join(", ") : "—");
-            $("#userInfoPopup").fadeIn(150);
         });
+
 
 
         $("#closeInfoPopup").on("click", function () {
