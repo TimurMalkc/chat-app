@@ -64,7 +64,7 @@ body {
 }
 
 #loginDiv {
-    background-color: blue;
+    background-color: var(--frame);
     height: 100px;
     width: 300px;
     display: flex;
@@ -196,7 +196,7 @@ body {
 }
 
 #authSection {
-    background-color: #024959;
+    background-color: var(--frame);
     text-align: center;
     height: 200px;
     margin-top: 50px;
@@ -205,18 +205,31 @@ body {
 
 .loginInput {
     text-align: center;
-    font-size: 20px;
+    font-size: 25px;
     border-radius: 5px;
     margin: 5px;
+    color: var(--textcolor);
 }
 
 .loginButton {
-    font-size: 20px;
-    margin: 5px;
+    font-size: 25px;
+    margin: 20px;
     border-radius: 10px;
-    background-color: rgb(41, 41, 41);
-    color: rgb(223, 223, 223);
+    padding-top: 5px;
+    background-color: var(--button);
+    border: none;
+    color: var(--textcolorlight);
 }
+
+.loginButton:hover{
+    background-color: var(--hover);
+}
+
+#loginH {
+    color: var(--textcolorlight);
+    font-size: 45px;
+}
+
 
 #chatSpan {
     color: var(--textcolorlight);

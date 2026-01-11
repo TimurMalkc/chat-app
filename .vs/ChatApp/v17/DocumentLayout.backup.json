@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|c:\\users\\timur\\desktop\\depo\\coding\\dotnetworkspace\\chatapp\\chatapp\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|solutionrelative:chatapp\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|c:\\users\\timur\\desktop\\depo\\coding\\dotnetworkspace\\chatapp\\chatapp\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|solutionrelative:chatapp\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|c:\\users\\timur\\desktop\\depo\\coding\\dotnetworkspace\\chatapp\\chatapp\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|solutionrelative:chatapp\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|c:\\users\\timur\\desktop\\depo\\coding\\dotnetworkspace\\chatapp\\chatapp\\wwwroot\\favicon.ico||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|solutionrelative:chatapp\\wwwroot\\favicon.ico||{177559E0-D141-11D0-92DF-00A0C9138C45}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FC31A55B-FCA7-4B6F-8391-B30B3D363863}|ChatApp\\ChatApp.csproj|c:\\users\\timur\\desktop\\depo\\coding\\dotnetworkspace\\chatapp\\chatapp\\services\\chatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -70,17 +74,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "ChatApp\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "ChatApp\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAN0AAAAAAAAAAAAkwBMAAAAWAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Views\\Home\\Index.cshtml*",
+              "RelativeToolTip": "ChatApp\\Views\\Home\\Index.cshtml*",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAADYAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-11-24T23:50:17.216Z",
               "IsPinned": true,
@@ -88,13 +92,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "site.css",
               "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\wwwroot\\css\\site.css",
               "RelativeDocumentMoniker": "ChatApp\\wwwroot\\css\\site.css",
               "ToolTip": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\wwwroot\\css\\site.css",
               "RelativeToolTip": "ChatApp\\wwwroot\\css\\site.css",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAANsAAAAAAAAAAADwv+QAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2025-11-24T23:51:18.239Z",
               "IsPinned": true,
@@ -102,7 +106,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "GroupService.cs",
               "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Services\\GroupService.cs",
               "RelativeDocumentMoniker": "ChatApp\\Services\\GroupService.cs",
@@ -116,6 +120,18 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "favicon.ico - Icon [16x16, 8 bit, BMP]",
+              "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\wwwroot\\favicon.ico",
+              "RelativeDocumentMoniker": "ChatApp\\wwwroot\\favicon.ico",
+              "ToolTip": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\wwwroot\\favicon.ico - Icon [16x16, 8 bit, BMP]",
+              "RelativeToolTip": "ChatApp\\wwwroot\\favicon.ico - Icon [16x16, 8 bit, BMP]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001525|",
+              "WhenOpened": "2026-01-11T20:17:36.067Z",
+              "EditorCaption": " - Icon [16x16, 8 bit, BMP]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "ChatService.cs",
               "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Services\\ChatService.cs",
               "RelativeDocumentMoniker": "ChatApp\\Services\\ChatService.cs",
@@ -127,7 +143,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "UserListController.cs",
               "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Controllers\\UserListController.cs",
               "RelativeDocumentMoniker": "ChatApp\\Controllers\\UserListController.cs",
@@ -139,7 +155,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "ChatApp\\Controllers\\UserController.cs",
@@ -151,7 +167,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "GroupController.cs",
               "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Controllers\\GroupController.cs",
               "RelativeDocumentMoniker": "ChatApp\\Controllers\\GroupController.cs",
@@ -163,7 +179,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "ChatApp\\Controllers\\HomeController.cs",
@@ -175,7 +191,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\appsettings.json",
               "RelativeDocumentMoniker": "ChatApp\\appsettings.json",
@@ -187,7 +203,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "ChatMessage.cs",
               "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Models\\ChatMessage.cs",
               "RelativeDocumentMoniker": "ChatApp\\Models\\ChatMessage.cs",
@@ -199,7 +215,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "Users.cs",
               "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Models\\Users.cs",
               "RelativeDocumentMoniker": "ChatApp\\Models\\Users.cs",
@@ -211,7 +227,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "ChatHub.cs",
               "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Hubs\\ChatHub.cs",
               "RelativeDocumentMoniker": "ChatApp\\Hubs\\ChatHub.cs",
@@ -223,7 +239,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "ErrorViewModel.cs",
               "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Models\\ErrorViewModel.cs",
               "RelativeDocumentMoniker": "ChatApp\\Models\\ErrorViewModel.cs",
@@ -235,7 +251,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "ChatApp\\Properties\\launchSettings.json",
@@ -247,7 +263,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\timur\\Desktop\\Depo\\Coding\\DotnetWorkSpace\\ChatApp\\ChatApp\\Program.cs",
               "RelativeDocumentMoniker": "ChatApp\\Program.cs",
