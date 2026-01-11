@@ -399,3 +399,20 @@ body {
     color: lightblue;
 }
 
+.date-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px 0;
+    color: #888;
+    font-size: 0.85em;
+    font-weight: bold;
+}
+
+    .date-divider::before,
+    .date-divider::after {
+        content: '';
+        flex: 1;
+        border-bottom: 1px solid #ddd;
+        margin: 0 10px;
+    }

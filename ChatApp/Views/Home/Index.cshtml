@@ -183,130 +183,181 @@
         });
 
 
-       
-        
+
+
+                let lastRenderedDate = null;
+
+        function getSimpleDate(dateObj) {
+            // Returns "YYYY-MM-DD" for comparison
+            return dateObj.toISOString().split('T')[0];
+        }
+
+        function formatDateForDivider(dateObj) {
+            const today = new Date();
+            const yesterday = new Date();
+            yesterday.setDate(today.getDate() - 1);
+
+            const dateStr = getSimpleDate(dateObj);
+
+            if (dateStr === getSimpleDate(today)) {
+                return "Today";
+            } else if (dateStr === getSimpleDate(yesterday)) {
+                return "Yesterday";
+            } else {
+                return dateObj.toLocaleDateString(); // e.g. "12/05/2024"
+            }
+        }
+
+        function appendDateDividerIfNeeded(timestamp) {
+            const dateObj = new Date(timestamp);
+            const dateString = getSimpleDate(dateObj);
+
+            // If the date has changed since the last message we rendered
+            if (lastRenderedDate !== dateString) {
+                const displayDate = formatDateForDivider(dateObj);
+                $("#chatDiv").append(
+                    `<div class="date-divider"><span>${displayDate}</span></div>`
+                );
+                lastRenderedDate = dateString; // Update tracker
+            }
+        }
+
+        // --- MAIN FUNCTION ---
         async function startChat() {
             const token = sessionStorage.getItem("jwtToken");
             console.log("JWT Token before connecting:", token);
             if (!token) return alert("You must log in first!");
 
             connection = new signalR.HubConnectionBuilder()
-            .withUrl("/chatHub", {
-                accessTokenFactory: () => token
-            })
-            .build();
+                .withUrl("/chatHub", {
+                    accessTokenFactory: () => token
+                })
+                .build();
 
 
+            // 1. RECEIVE MESSAGE (Updated with Date Divider)
             connection.on("ReceiveMessage", (user, message, timestamp) => {
-                    const time = new Date(timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                    if(user ==  $("#loginUsername").val()){
-                        $("#chatDiv").append(`<div class="messageDiv" id="messageDivPov"> <p id="messageP"> ${message} </p> <p id="timeP"> [${time}] </p> </div>`);
-                    }else{
-                        $("#chatDiv").append(`<div class="messageDiv" id="messageDivOther"> <p id="userP">${user}</p> <p id="messageP"> ${message} </p> <p id="timeP"> [${time}] </p> </div>`);
+                // Check for date change
+                appendDateDividerIfNeeded(timestamp);
 
-                    }
+                const time = new Date(timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-                    const chat = $("#chatDiv")[0];
-                    chat.scrollTop = chat.scrollHeight;
+                if (user == $("#loginUsername").val()) {
+                    $("#chatDiv").append(`<div class="messageDiv" id="messageDivPov"> <p id="messageP"> ${message} </p> <p id="timeP"> [${time}] </p> </div>`);
+                } else {
+                    $("#chatDiv").append(`<div class="messageDiv" id="messageDivOther"> <p id="userP">${user}</p> <p id="messageP"> ${message} </p> <p id="timeP"> [${time}] </p> </div>`);
+                }
+
+                const chat = $("#chatDiv")[0];
+                chat.scrollTop = chat.scrollHeight;
             });
 
-            
+
+            // 2. LOAD HISTORY (Updated with Date Divider)
             connection.on("LoadChatHistory", messages => {
                 $("#chatDiv").empty();
+
+                // IMPORTANT: Reset the date tracker when loading a new chat
+                lastRenderedDate = null;
+
                 messages.forEach(m => {
+                    // Check for date change
+                    appendDateDividerIfNeeded(m.timestamp);
+
                     const date = new Date(m.timestamp);
-                    const time = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });  
-                    if(m.user ==  $("#loginUsername").val()){
+                    const time = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+                    if (m.user == $("#loginUsername").val()) {
                         $("#chatDiv").append(`<div class="messageDiv" id="messageDivPov"> <p id="messageP"> ${m.message} </p> <p id="timeP"> [${time}] </p> </div>`);
-                    }else{  
+                    } else {
                         $("#chatDiv").append(`<div class="messageDiv" id="messageDivOther"> <p id="userP">${m.user}</p> <p id="messageP"> ${m.message} </p> <p id="timeP"> [${time}] </p> </div>`);
-
-                    }     
+                    }
                 });
-                        const chat = $("#chatDiv")[0];
-        chat.scrollTop = chat.scrollHeight;
 
+                const chat = $("#chatDiv")[0];
+                chat.scrollTop = chat.scrollHeight;
             });
 
-                    connection.on("GroupAdded", (groupName) => {
-            loadGroups(); // update left list
-        });
 
-        connection.on("GroupRemoved", (groupName) => {
-            loadGroups(); // update left list
-
-            if (currentRoom === groupName) {
-                alert("You were removed from this group");
-
-                currentRoom = null;
-                currentRoomType = null;
-                $("#chatMessages").empty();
-                $("#messageInput").prop("disabled", true);
-                $("#sendButton").prop("disabled", true);
-            }
-        });
+            // 3. GROUP ADDED (Unchanged)
+            connection.on("GroupAdded", (groupName) => {
+                loadGroups();
+            });
 
 
+            // 4. GROUP REMOVED (Unchanged, corrected ID)
+            connection.on("GroupRemoved", (groupName) => {
+                loadGroups();
+
+                if (currentRoom === groupName) {
+                    alert("You were removed from this group");
+
+                    currentRoom = null;
+                    currentRoomType = null;
+                    $("#chatDiv").empty(); // Corrected from #chatMessages to #chatDiv to match your HTML
+                    $("#messageInput").prop("disabled", true);
+                    $("#sendButton").prop("disabled", true);
+                }
+            });
+
+
+            // 5. USER DELETED (Unchanged)
             connection.on("UserDeleted", (deletedUser) => {
-            console.log("User deleted:", deletedUser);
+                console.log("User deleted:", deletedUser);
 
-            // 1. Refresh the left sidebar to remove the user from the list
-            loadGroups();
+                loadGroups();
 
-            // 2. If the user currently has a private chat open with the deleted person:
-            if (currentRoom === deletedUser && currentRoomType === "private") {
-                alert("The user you are chatting with has deleted their account.");
-                $("#chatDiv").empty();
-                $("#headerSpan").empty();
-                currentRoom = null;
-                $("#messageInput").prop("disabled", true);
-                $("#sendButton").prop("disabled", true);
-            }
-        });
+                if (currentRoom === deletedUser && currentRoomType === "private") {
+                    alert("The user you are chatting with has deleted their account.");
+                    $("#chatDiv").empty();
+                    $("#headerSpan").empty();
+                    currentRoom = null;
+                    $("#messageInput").prop("disabled", true);
+                    $("#sendButton").prop("disabled", true);
+                }
+            });
 
 
+            // 6. GROUP DELETED (Unchanged)
+            connection.on("GroupDeleted", (groupName) => {
+                loadGroups();
 
-                connection.on("GroupDeleted", (groupName) => {
-            // 1. Refresh the left list
-            loadGroups();
+                if (currentRoom === groupName && currentRoomType === "group") {
+                    alert(`The group "${groupName}" was deleted.`);
 
-            // 2. If I'm currently inside that group, kick me out to the "lobby"
-            if (currentRoom === groupName && currentRoomType === "group") {
-                alert(`The group "${groupName}" was deleted.`);
+                    $("#chatDiv").empty();
+                    $("#headerSpan").empty();
 
-                $("#chatDiv").empty();
-                $("#headerSpan").empty();
+                    currentRoom = null;
+                    currentRoomType = null;
 
-                currentRoom = null;
-                currentRoomType = null;
-
-                $("#messageInput").prop("disabled", true);
-                $("#sendButton").prop("disabled", true);
-                $("#addUserBtn").hide();
-                $("#removeUserBtn").hide();
-            }
-        });
+                    $("#messageInput").prop("disabled", true);
+                    $("#sendButton").prop("disabled", true);
+                    $("#addUserBtn").hide();
+                    $("#removeUserBtn").hide();
+                }
+            });
 
 
-                connection.on("UserRegistered", (newUsername) => {
-            console.log("New user registered:", newUsername);
+            // 7. USER REGISTERED (Unchanged)
+            connection.on("UserRegistered", (newUsername) => {
+                console.log("New user registered:", newUsername);
+                loadGroups();
+            });
 
-            // This function refreshes both the Group list AND the User list
-            loadGroups();
-        });
 
-
-                          
+            // START CONNECTION
             try {
                 console.log("Connecting to SignalR...");
                 await connection.start();
-                        console.log("✅ Connected to SignalR");
+                console.log("✅ Connected to SignalR");
             } catch (err) {
                 console.error("❌ SignalR failed:", err);
                 setTimeout(startChat, 3000);
             }
 
-            
+
+            // SEND BUTTON LOGIC (Unchanged)
             $("#sendButton").off("click").on("click", async function () {
                 if (!currentRoom) return alert("Select a chat first!");
                 const message = $("#messageBar").val().trim();
@@ -314,32 +365,31 @@
 
                 if (currentRoomType === "group") {
                     await connection.invoke("SendGroupMessage", currentRoom, message);
-                } else if(currentRoomType === "private") {
+                } else if (currentRoomType === "private") {
                     await connection.invoke("SendPrivateMessage", currentRoom, message);
                 }
 
                 $("#messageBar").val("").focus();
             });
 
-            $("#messageBar").on("keydown", async function(e){
+            // ENTER KEY LOGIC (Unchanged)
+            $("#messageBar").on("keydown", async function (e) {
                 if (e.key === "Enter") {
                     e.preventDefault();
 
                     if (!currentRoom) return alert("Select a chat first!");
-                
-                    
-                const message = $(this).val().trim();
-                if (!message) return;
 
-                if (currentRoomType === "group") {
-                    await connection.invoke("SendGroupMessage", currentRoom, message);
-                } else if(currentRoomType === "private") {
-                    await connection.invoke("SendPrivateMessage", currentRoom, message);
-                }
+                    const message = $(this).val().trim();
+                    if (!message) return;
+
+                    if (currentRoomType === "group") {
+                        await connection.invoke("SendGroupMessage", currentRoom, message);
+                    } else if (currentRoomType === "private") {
+                        await connection.invoke("SendPrivateMessage", currentRoom, message);
+                    }
                     $(this).val("").focus();
                 }
             });
-
         }
 
 
