@@ -8,16 +8,23 @@ p{
 }
 
 :root {
-    --dark: #012E40;
-    --darklight: #024959;
-    --light: #026773;
-    --lightlight: #3CA6A6;
-    --chatscreen: #F2E3D5;
-    --lightlightClicked: #397D7D;
+    --border: #11272D;
+    --frame: #3A137C;
+    --button: #3A137C;
+    --messagePov: #944BBB;
+    --messageOther: #F8F2F7;
+    --chatscreen: #E4C9E0;
+    --panel: #f5e1f2;
+    --hover: #9E5CC1;
+    --chatscroll: #bd93b7;
+    --roomscroll: #290961;
+    --textcolor: #1c1c1c;
+    --timecolor: #bababa;
+    --textcolorlight: white;
 }
 
 body {
-    background-color: var(--darklight);
+    background-color: var(--frame);
     margin: 0;
 }
 
@@ -38,7 +45,7 @@ body {
     position: absolute;
     float: left;
     text-align: center;
-    background-color: var(--darklight);
+    background-color: var(--frame);
     
 }
 
@@ -51,7 +58,7 @@ body {
     float: right;
     background-color: var(--chatscreen);
     overflow-y: scroll;
-    scrollbar-color: rgba(18, 128, 132, 0.6) var(--chatscreen);
+    scrollbar-color: var(--chatscroll) var(--chatscreen);
     height: 586px;
     scroll-behavior: auto;
 }
@@ -79,49 +86,62 @@ body {
 }
 
 #headerDiv {
-    background-color: var(--darklight);
+    background-color: var(--frame);
     height: 50px;
-    color: aliceblue;
+    color: var(--textcolorlight);
     font-size: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-bottom: 0.1rem solid var(--dark);
+    border-bottom: 0.1rem solid var(--border);
 }
 
-#headerSpan {   
+#headerSpan {
     display: flex;
-    background-color: var(--light);
+    background-color: var(--button);
     border-radius: 10px;
     padding-left: 5px;
     padding-right: 5px;
     font-size: 25px;
+    border: 0.1rem solid var(--border);
+}
+
+#headerSpan:hover{
+    background-color: var(--hover);
 }
 
 #messageBar {
     width: 80%;
     font-size: 25px;
     border-radius: 10px;
-    color: black;
+    color: var(--textcolor);
     padding: 5px;
+    outline: none;
+    border: none;
+    caret-color: var(--border);
+    
 }
 
 .messageButton {
     font-size: 25px;
     margin: 5px;
     border-radius: 10px;
-    background-color: rgb(41, 41, 41);
-    color: rgb(223, 223, 223);
-
+    background-color: var(--frame);
+    color: var(--textcolorlight);
 }
+
+.messageButton:hover{
+    background-color: var(--hover);
+}
+
 
 #roomsHeadDiv {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--darklight);
+    background-color: var(--frame);
     height: 50px;
-    border-bottom: 0.1rem solid var(--dark);
+    border-bottom: 0.1rem solid var(--border);
 
 }
 
@@ -129,11 +149,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--darklight);
+    background-color: var(--frame);
     height: 60px;
     position: absolute;
     width: 100%;
-    border-top: 0.1rem solid var(--dark);
+    border-top: 0.1rem solid var(--border);
 
 }
 
@@ -143,8 +163,8 @@ body {
 }
 
 .roomsLi {
-    background-color: var(--darklight);
-    color: rgb(236, 236, 236);
+    background-color: var(--frame);
+    color: var(--textcolorlight);
     border-radius: 15px;
     margin: 2%;
     font-size: 20px;
@@ -155,22 +175,17 @@ body {
     display: flex;
 }
 
-.roomsLi:active {
-    background-color: var(--lightlightClicked);
+.roomsLi:hover {
+    background-color: var(--hover);
 }
-
-    .roomsLi:hover {
-        background-color: var(--lightlightClicked);
-    }
 
 .roomsUl {
     overflow-y: hidden;
-    scrollbar-color: rgb(139, 207, 204) rgb(64, 140, 138);
+    scrollbar-color: var(--roomscroll) var(--frame);
     scroll-behavior: auto;
     height: 550px;
     padding-left: 5%;
     list-style: none;
-
 }
 
 .system-message {
@@ -204,7 +219,7 @@ body {
 }
 
 #chatSpan {
-    color: white;
+    color: var(--textcolorlight);
     font-size: 25px;
 }
 
@@ -214,7 +229,7 @@ body {
     top: 45%;
     left: 60%;
     transform: translate(-50%, -50%);
-    background: var(--lightlight);
+    background: var(--panel);
     padding: 20px;
     width: 600px;
     border-radius: 10px;
@@ -230,7 +245,7 @@ body {
     margin: 5px;
     border-radius: 10px;
     padding-top: 5px;
-    background-color: var(--light);
+    background-color: var(--button);
     border: none;
 }
 
@@ -239,7 +254,7 @@ body {
     margin: 5px;
     border-radius: 10px;
     padding-top: 5px;
-    background-color: var(--light);
+    background-color: var(--button);
     border: none;
 }
 
@@ -248,7 +263,7 @@ body {
     margin: 5px;
     border-radius: 10px;
     padding-top: 5px;
-    background-color: var(--light);
+    background-color: var(--button);
     border: none;
 }
 
@@ -257,7 +272,7 @@ body {
     margin: 5px;
     border-radius: 10px;
     padding-top: 5px;
-    background-color: var(--light);
+    background-color: var(--button);
     border: none;
 }
 
@@ -266,15 +281,15 @@ body {
     font-size: 25px;
     margin: 2px;
     border-radius: 10px;
-    background-color: var(--light);
-    color: rgb(223, 223, 223);
+    background-color: var(--button);
+    color: var(--textcolorlight);
     padding-top: 4px;
-    border: none;
+    border: 0.1rem solid var(--border);
     align-items: center;
 }
 
 #profileDiv:hover {
-    background-color: var(--darklight);
+    background-color: var(--hover);
 }
 
 #profilePopup {
@@ -283,7 +298,7 @@ body {
     top: 45%;
     left: 60%;
     transform: translate(-50%, -50%);
-    background: var(--lightlight);
+    background: var(--panel);
     padding: 20px;
     width: 300px;
     border-radius: 10px;
@@ -300,7 +315,7 @@ body {
     margin: 5px;
     border-radius: 10px;
     padding-top: 5px;
-    background-color: var(--light);
+    background-color: var(--button);
     border: none;
 }
 
@@ -312,7 +327,7 @@ body {
     margin: 5px;
     border-radius: 10px;
     padding-top: 5px;
-    background-color: var(--light);
+    background-color: var(--button);
     border: none;
 }
 
@@ -342,12 +357,12 @@ body {
     margin: 5px;
     border-radius: 10px;
     padding-top: 5px;
-    background-color: var(--light);
-    border: none;
+    background-color: var(--button);
+    border: 0.1rem solid var(--border);
 }
 
 #newGroupBtn:hover {
-    background-color: var(--darklight);
+    background-color: var(--hover);
 }
 
 #logOutBtn {
@@ -355,18 +370,18 @@ body {
     margin: 5px;
     border-radius: 10px;
     padding-top: 5px;
-    background-color: var(--light);
-    border: none;
+    background-color: var(--button);
+    border: 0.1rem solid var(--border);
 }
 
 #logOutBtn:hover {
-    background-color: var(--darklight);
+    background-color: var(--hover);
 }
 
 .messageDiv {
     margin: 5px;
     margin-bottom: 3px;
-    background-color: var(--lightlight);
+    background-color: var(--messageOther);
     width: 30%;
     border-radius: 10px;
     position: relative;
@@ -379,24 +394,24 @@ body {
 
 #messageDivPov {
     left: 68.4%;
-    background-color: var(--light);
+    background-color: var(--messagePov);
     
 }
 
-#messageP{
-    color: black;
+#messageP {
+    color: var(--textcolor);
 }
 
 #timeP {
     position: absolute;
-    bottom: 0px;
-    right: 8px;
-    color: rgba(155, 241, 237, 0.52);
-    font-size: 13px;
+    bottom: 4px;
+    right: 4px;
+    color: var(--timecolor);
+    font-size: 11px; 
 }
 
 #userP{
-    color: lightblue;
+    color: var(--hover);
 }
 
 .date-divider {
@@ -404,7 +419,7 @@ body {
     align-items: center;
     justify-content: center;
     margin: 15px 0;
-    color: #888;
+    color: var(--chatscroll);
     font-size: 0.85em;
     font-weight: bold;
 }
@@ -413,6 +428,7 @@ body {
     .date-divider::after {
         content: '';
         flex: 1;
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid var(--chatscroll);
         margin: 0 10px;
+       
     }
