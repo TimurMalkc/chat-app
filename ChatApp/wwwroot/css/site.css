@@ -188,13 +188,6 @@ body {
     list-style: none;
 }
 
-.system-message {
-    color: #aaa;
-    font-style: italic;
-    text-align: center;
-    margin: 5px 0;
-}
-
 #authSection {
     background-color: var(--frame);
     text-align: center;
@@ -251,24 +244,46 @@ body {
 
 #closeInfoPopup {
     position: absolute;
-    top: 40px;
+    top: 30px;
     right: 30px;
     display: inline;
-    font-size: 25px;
+    font-size: 10px;
     margin: 5px;
     border-radius: 10px;
     padding-top: 5px;
     background-color: var(--button);
-    border: none;
+    border: 0.1rem solid var(--border);
 }
+
+#closeInfoPopup:hover{
+    background-color: var(--hover);
+}
+
+#membersContainer {
+    margin-top: 5px;
+}
+
+#adminP{
+    margin-top: 5px;
+}
+
+#infoMembers {
+    max-height: 150px;
+    overflow-y: auto;
+}
+
 
 #addUserBtn {
     font-size: 15px;
     margin: 5px;
     border-radius: 10px;
     padding-top: 5px;
-    background-color: var(--button);
-    border: none;
+    background-color: var(--panel);
+    border: 0.1rem solid var(--border);
+}
+
+#addUserBtn:hover{
+    background-color: var(--hover);
 }
 
 #deleteGroupBtn {
@@ -276,8 +291,12 @@ body {
     margin: 5px;
     border-radius: 10px;
     padding-top: 5px;
-    background-color: var(--button);
-    border: none;
+    background-color: var(--panel);
+    border: 0.1rem solid var(--border);
+}
+
+#deleteGroupBtn:hover {
+    background-color: var(--hover);
 }
 
 #leaveGroupBtn {
@@ -285,8 +304,16 @@ body {
     margin: 5px;
     border-radius: 10px;
     padding-top: 5px;
-    background-color: var(--button);
-    border: none;
+    background-color: var(--panel);
+    border: 0.1rem solid var(--border);
+}
+
+#leaveGroupBtn:hover {
+    background-color: var(--hover);
+}
+
+strong{
+    color: var(--frame);
 }
 
 #profileDiv {
@@ -321,17 +348,20 @@ body {
 
 #closeProfilePopup {
     position: absolute;
-    top: 40px;
+    top: 20px;
     right: 20px;
     display: inline;
-    font-size: 25px;
+    font-size: 10px;
     margin: 5px;
     border-radius: 10px;
     padding-top: 5px;
     background-color: var(--button);
-    border: none;
+    border: 0.1rem solid var(--border);
 }
 
+#closeProfilePopup:hover{
+    background-color: var(--hover);
+}
 
 #deleteProfileBtn {
     top: 40px;
@@ -340,8 +370,12 @@ body {
     margin: 5px;
     border-radius: 10px;
     padding-top: 5px;
-    background-color: var(--button);
-    border: none;
+    background-color: var(--panel);
+    border: 0.1rem solid var(--border);
+}
+
+#deleteProfileBtn:hover{
+    background-color: var(--hover);
 }
 
 #profileP {
