@@ -17,13 +17,11 @@ namespace ChatApp.Controllers
             _users = database.GetCollection<User>("Users");
         }
 
-     
         [HttpGet("all")]
         public async Task<IActionResult> GetAllUsers()
         {
             var users = await _users.Find(_ => true).ToListAsync();
 
-          
             var result = users.Select(u => new
             {
                 username = u.Username

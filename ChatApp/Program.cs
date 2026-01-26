@@ -8,24 +8,19 @@ using System.Threading.Tasks;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Services
 builder.Services.AddControllersWithViews();
 builder.Services.AddSignalR();
 
-// register your services (avoid duplicate registrations)
 builder.Services.AddScoped<ChatService>();
 builder.Services.AddScoped<GroupService>();
 
-// JWT settings section access (assuming appsettings.json has "Jwt": { ... })
 var jwtSettings = builder.Configuration.GetSection("Jwt");
 
-// Authentication - JWT Bearer
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-.AddJwtBearer(options =>
+}).AddJwtBearer(options =>
 {
     options.TokenValidationParameters = new TokenValidationParameters
     {
@@ -39,7 +34,6 @@ builder.Services.AddAuthentication(options =>
             Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"] ?? "replace_with_key_if_missing"))
     };
 
-    // For SignalR: allow token via query string
     options.Events = new JwtBearerEvents
     {
         OnMessageReceived = context =>
@@ -56,8 +50,6 @@ builder.Services.AddAuthentication(options =>
 });
 
 builder.Services.AddAuthorization();
-
-// Swagger — configure here BEFORE building the app
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -91,7 +83,6 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
-// Middleware pipeline (after Build)
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -102,8 +93,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
-app.UseSwagger();          // Swagger middleware
-app.UseSwaggerUI();        // Swagger UI middleware
+app.UseSwagger();          
+app.UseSwaggerUI();       
 
 app.UseAuthentication();
 app.UseAuthorization();

@@ -44,7 +44,6 @@
             <div id="chatDiv"></div>
 
             <div id="barDiv">
-                
                 <input type="text" id="messageBar" name="messageBar" placeholder="Enter your message">
                 <button id="sendButton" type="submit" class="messageButton">➤</button>
             </div>
@@ -64,8 +63,7 @@
 
         <p id="nameP"><strong>Name: </strong> <span id="infoName"></span></p>
         <p id="lastOnlineP"><strong>Last Online: </strong> <span id="infoLastOnline"></span></p>
-        <p id="groupsP"><strong>Mutual Groups: </strong><span id="infoGroups"></span></p>
-
+        <p id="groupsP"><strong>MutualGroups: </strong><span id="infoGroups"></span></p>
         <p id="adminP"><strong>Admin: </strong><span id="infoAdmin"></span></p>
 
         <div id="membersContainer">
@@ -82,7 +80,6 @@
 
 
     <div id="profilePopup">
-
         <button id="deleteProfileBtn">
             Delete My Account
         </button>
@@ -104,11 +101,8 @@
             }
         }
 
-
-       
         $("#mainDiv").hide();
 
-       
         $("#registerBtn").click(async () => {
             const username = $("#loginUsername").val();
             const password = $("#loginPassword").val();
@@ -123,8 +117,6 @@
             alert(text);
         });
 
-
-        
         $("#loginBtn").click(async () => {
             const username = $("#loginUsername").val();
             const password = $("#loginPassword").val();
@@ -184,12 +176,9 @@
         });
 
 
-
-
-                let lastRenderedDate = null;
+        let lastRenderedDate = null;
 
         function getSimpleDate(dateObj) {
-            // Returns "YYYY-MM-DD" for comparison
             return dateObj.toISOString().split('T')[0];
         }
 
@@ -205,7 +194,7 @@
             } else if (dateStr === getSimpleDate(yesterday)) {
                 return "Yesterday";
             } else {
-                return dateObj.toLocaleDateString(); // e.g. "12/05/2024"
+                return dateObj.toLocaleDateString(); 
             }
         }
 
@@ -213,20 +202,17 @@
             const dateObj = new Date(timestamp);
             const dateString = getSimpleDate(dateObj);
 
-            // If the date has changed since the last message we rendered
             if (lastRenderedDate !== dateString) {
                 const displayDate = formatDateForDivider(dateObj);
                 $("#chatDiv").append(
-                    `<div class="date-divider"><span>${displayDate}</span></div>`
+                    `<div class="dateDivider"><span>${displayDate}</span></div>`
                 );
-                lastRenderedDate = dateString; // Update tracker
+                lastRenderedDate = dateString; 
             }
         }
 
-        // --- MAIN FUNCTION ---
         async function startChat() {
             const token = sessionStorage.getItem("jwtToken");
-            console.log("JWT Token before connecting:", token);
             if (!token) return alert("You must log in first!");
 
             connection = new signalR.HubConnectionBuilder()
@@ -236,9 +222,8 @@
                 .build();
 
 
-            // 1. RECEIVE MESSAGE (Updated with Date Divider)
             connection.on("ReceiveMessage", (user, message, timestamp) => {
-                // Check for date change
+
                 appendDateDividerIfNeeded(timestamp);
 
                 const time = new Date(timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -253,16 +238,13 @@
                 chat.scrollTop = chat.scrollHeight;
             });
 
-
-            // 2. LOAD HISTORY (Updated with Date Divider)
             connection.on("LoadChatHistory", messages => {
                 $("#chatDiv").empty();
 
-                // IMPORTANT: Reset the date tracker when loading a new chat
                 lastRenderedDate = null;
 
                 messages.forEach(m => {
-                    // Check for date change
+
                     appendDateDividerIfNeeded(m.timestamp);
 
                     const date = new Date(m.timestamp);
@@ -279,14 +261,10 @@
                 chat.scrollTop = chat.scrollHeight;
             });
 
-
-            // 3. GROUP ADDED (Unchanged)
             connection.on("GroupAdded", (groupName) => {
                 loadGroups();
             });
 
-
-            // 4. GROUP REMOVED (Unchanged, corrected ID)
             connection.on("GroupRemoved", (groupName) => {
                 loadGroups();
 
@@ -295,17 +273,13 @@
 
                     currentRoom = null;
                     currentRoomType = null;
-                    $("#chatDiv").empty(); // Corrected from #chatMessages to #chatDiv to match your HTML
+                    $("#chatDiv").empty(); 
                     $("#messageInput").prop("disabled", true);
                     $("#sendButton").prop("disabled", true);
                 }
             });
 
-
-            // 5. USER DELETED (Unchanged)
             connection.on("UserDeleted", (deletedUser) => {
-                console.log("User deleted:", deletedUser);
-
                 loadGroups();
 
                 if (currentRoom === deletedUser && currentRoomType === "private") {
@@ -318,8 +292,6 @@
                 }
             });
 
-
-            // 6. GROUP DELETED (Unchanged)
             connection.on("GroupDeleted", (groupName) => {
                 loadGroups();
 
@@ -339,15 +311,11 @@
                 }
             });
 
-
-            // 7. USER REGISTERED (Unchanged)
             connection.on("UserRegistered", (newUsername) => {
                 console.log("New user registered:", newUsername);
                 loadGroups();
             });
 
-
-            // START CONNECTION
             try {
                 console.log("Connecting to SignalR...");
                 await connection.start();
@@ -357,8 +325,6 @@
                 setTimeout(startChat, 3000);
             }
 
-
-            // SEND BUTTON LOGIC (Unchanged)
             $("#sendButton").off("click").on("click", async function () {
                 if (!currentRoom) return alert("Select a chat first!");
                 const message = $("#messageBar").val().trim();
@@ -373,7 +339,6 @@
                 $("#messageBar").val("").focus();
             });
 
-            // ENTER KEY LOGIC (Unchanged)
             $("#messageBar").on("keydown", async function (e) {
                 if (e.key === "Enter") {
                     e.preventDefault();
@@ -391,36 +356,32 @@
                     $(this).val("").focus();
                 }
             });
-        }
 
+            $("#newGroupBtn").click(async () => {
+                const groupName = prompt("Enter group name:");
+                if (!groupName) return;
 
-        $("#newGroupBtn").click(async () => {
-            const groupName = prompt("Enter group name:");
-            if (!groupName) return;
+                const token = sessionStorage.getItem("jwtToken");
 
-            const token = sessionStorage.getItem("jwtToken");
-
-            const response = await fetch("/api/group/create", {
-                method: "POST",
-                headers: {
-                    "Authorization": "Bearer " + token,
-                    "Content-Type": "application/json"
-                },
+                const response = await fetch("/api/group/create", {
+                    method: "POST",
+                    headers: {
+                        "Authorization": "Bearer " + token,
+                        "Content-Type": "application/json"
+                    },
                         body: JSON.stringify({ name: groupName })
+                });
+
+                if (response.ok) {
+                    alert("Group created!");
+                    await loadGroups();
+                } else {
+                    alert("Failed to create group");
+                    console.log(await response.text());
+                }
             });
 
-            if (response.ok) {
-                alert("Group created!");
-                await loadGroups();
-            } else {
-                alert("Failed to create group");
-                console.log(await response.text());
-            }
-        });
-
-
-
-
+        }
 
         async function loadGroups() {
             const token = sessionStorage.getItem("jwtToken");
@@ -445,9 +406,11 @@
             const userResponse = await fetch("/api/userlist/all", {
                 headers: { "Authorization": "Bearer " + token }
             });
+
             if (userResponse.ok) {
                 const users = await userResponse.json();
                 const imgSrcUser = '@Url.Content("~/images/profile.png")';
+
                 users.forEach(user => {
                     roomsUl.append(`
                         <li class="roomsLi userLi" data-user="${user.username}">
@@ -457,57 +420,57 @@
                     `);
                 });
 
-            $(".userLi").off("click").on("click", async function () {
-                const otherUser = $(this).data("user");
-                if (currentRoom === otherUser) return;
+                $(".userLi").off("click").on("click", async function () {
+                    const otherUser = $(this).data("user");
+                    if (currentRoom === otherUser) return;
 
-                currentRoom = otherUser;
-                currentRoomType = "private";
-                $("#chatDiv").empty();
-                $("#headerSpan").empty();
+                    currentRoom = otherUser;
+                    currentRoomType = "private";
+                    $("#chatDiv").empty();
+                    $("#headerSpan").empty();
 
-                $("#headerSpan").append(`<img id="profileImg" src="${imgSrcUser}" width="25" height="25" />`);
-                $("#headerSpan").append(otherUser);
+                    $("#headerSpan").append(`<img id="profileImg" src="${imgSrcUser}" width="25" height="25" />`);
+                    $("#headerSpan").append(otherUser);
 
-                $("#userInfoPopup").fadeOut(150);
+                    $("#userInfoPopup").fadeOut(150);
 
-                await connection.invoke("JoinPrivateChat", otherUser);
-                $("#addUserBtn").hide(); 
-                $("#removeUserBtn").hide();
+                    $("#addUserBtn").hide();
+                    $("#removeUserBtn").hide();
+
+                    await connection.invoke("JoinPrivateChat", otherUser);
+                    
                 });
             }   
 
-
-            const imgSrcGroup = '@Url.Content("~/images/group.png")';
-            groups.forEach(g => {     
-            roomsUl.append(
-                `<li class="roomsLi groupLi" data-group="${g.name}">
-                    <img id="profileImg" src="${imgSrcGroup}" width="25" height="25" />
-                    ${g.name}
-                </li>`);
-            });
+                const imgSrcGroup = '@Url.Content("~/images/group.png")';
+                groups.forEach(g => {     
+                roomsUl.append(
+                    `<li class="roomsLi groupLi" data-group="${g.name}">
+                        <img id="profileImg" src="${imgSrcGroup}" width="25" height="25" />
+                        ${g.name}
+                    </li>`);
+                });
 
                 
-            $(".groupLi").off("click").on("click", async function () {
-                const groupName = $(this).data("group");
-                currentRoom = groupName;
-                currentRoomType = "group";
+                $(".groupLi").off("click").on("click", async function () {
+                    const groupName = $(this).data("group");
+                    currentRoom = groupName;
+                    currentRoomType = "group";
 
-                $("#chatDiv").empty();
-                $("#headerSpan").empty();
+                    $("#chatDiv").empty();
+                    $("#headerSpan").empty();
 
-                $("#userInfoPopup").fadeOut(150);
+                    $("#userInfoPopup").fadeOut(150);
 
-                $("#headerSpan").append(`<img id="profileImg" src="${imgSrcGroup}" width="25" height="25" />`);
-                $("#headerSpan").append(groupName);
+                    $("#headerSpan").append(`<img id="profileImg" src="${imgSrcGroup}" width="25" height="25" />`);
+                    $("#headerSpan").append(groupName);
 
-                await connection.invoke("JoinRoom", groupName);
+                    $("#messageInput").prop("disabled", false);
+                    $("#sendButton").prop("disabled", false);
 
-                $("#messageInput").prop("disabled", false);
-                $("#sendButton").prop("disabled", false);
-
-
-                const group = groups.find(gr => gr.name === groupName);
+                    await connection.invoke("JoinRoom", groupName);
+                 
+                    const group = groups.find(gr => gr.name === groupName);
                     if (group && group.admin === currentUser) {
                         $("#addUserBtn").show();
                         $("#removeUserBtn").show();
@@ -519,164 +482,14 @@
                         $("#deleteGroupBtn").hide();
                         $("#leaveGroupBtn").show();
                     }
-            });
-        }
-
-        
-
-
-
-        async function checkIfAdmin(groupName) {
-            const token = sessionStorage.getItem("jwtToken");
-
-            try {
-                const response = await fetch(`/api/group/${groupName}`, {
-                    headers: { "Authorization": "Bearer " + token }
                 });
-
-                if (!response.ok) {
-                    console.warn("checkIfAdmin failed, NOT hiding button");
-                    return; 
-                }
-
-                const group = await response.json();
-
-                const tokenPayload = JSON.parse(atob(token.split('.')[1]));
-                const currentUser = tokenPayload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
-
-                if (group.admin === currentUser) {
-                    $("#addUserBtn").show();
-                    $("#removeUserBtn").show();
-                    $("#deleteGroupBtn").show();
-                    $("#leaveGroupBtn").hide();
-                } else {
-                    $("#addUserBtn").hide();
-                    $("#removeUserBtn").hide();
-                    $("#deleteGroupBtn").hide();
-                    $("#leaveGroupBtn").show();
-                }
-            }
-            catch (err) {
-                console.error("checkIfAdmin error:", err);
-            }
         }
 
 
-
-
-                $("#addUserBtn").off("click").on("click", async () => {
-            // 1. Basic Checks
-            if (!currentRoom) return alert("Open a group first!");
-
-            const usernameToAdd = prompt("Enter the username you want to add:");
-            if (!usernameToAdd) return;
-
-            const groupName = currentRoom;
-            const token = sessionStorage.getItem("jwtToken");
-
-            // 2. Send API Request
-            const response = await fetch("/api/group/addUser", {
-                method: "POST",
-                headers: {
-                    "Authorization": "Bearer " + token,
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    groupName: groupName,
-                    username: usernameToAdd
-                })
-            });
-
-            if (response.ok) {
-                alert("User added!");
-
-                // --- INSTANT UI UPDATE START ---
-
-                // Find the existing list container
-                const membersList = $("#infoMembers ul");
-
-                // If the list said "No members", clear that first
-                if (membersList.text().includes("No members")) {
-                    membersList.empty();
-                }
-
-                // Create the new list item
-                const li = $("<li>").css({ "margin-bottom": "5px" });
-                li.append(`<span>${usernameToAdd} </span>`);
-
-                const imgSrcClose = '@Url.Content("~/images/close.png")';
-                // Since you are the Admin, add the Remove Button (❌) immediately
-                const removeBtn = $(`<span style="cursor:pointer; margin-left:10px;" title="Remove User"><img src="${imgSrcClose}" width="15" height="15" /></span>`);
-
-                // Attach the specific remove logic for this new user
-                removeBtn.click(async function() {
-                     if (!confirm(`Remove ${usernameToAdd} from the group?`)) return;
-
-                     const delResponse = await fetch(
-                        `/api/group/${encodeURIComponent(groupName)}/users/${encodeURIComponent(usernameToAdd)}`,
-                        {
-                            method: "DELETE",
-                            headers: { "Authorization": "Bearer " + token }
-                        }
-                    );
-
-                    if (delResponse.ok) {
-                        li.remove(); // Remove immediately
-                        loadGroups();
-                    } else {
-                        alert("Failed: " + await delResponse.text());
-                    }
-                });
-
-                li.append(removeBtn);
-
-                // Add to the list
-                membersList.append(li);
-
-                // --- INSTANT UI UPDATE END ---
-
-                loadGroups(); // Update background data (left sidebar)
-            } else {
-                alert("Failed: " + await response.text());
-            }
-        });
-
-
-            $("#removeUserBtn").click(async () => {
-            if (!currentRoom || currentRoomType !== "group")
-                return alert("Open a group first!");
-
-            const usernameToRemove = prompt("Enter the username you want to remove:");
-            if (!usernameToRemove) return;
-
-            const groupName = currentRoom;
-            const token = sessionStorage.getItem("jwtToken");
-
-            const response = await fetch(
-                `/api/group/${encodeURIComponent(groupName)}/users/${encodeURIComponent(usernameToRemove)}`,
-                {
-                    method: "DELETE",
-                    headers: {
-                        "Authorization": "Bearer " + token
-                    }
-                }
-            );
-
-            if (response.ok) {
-                alert("User removed!");
-                loadGroups();
-            } else {
-                alert("Failed: " + await response.text());
-            }
-        });
-
-
-
-                              $("#headerSpan").on("click", async function () {
+        $("#headerSpan").on("click", async function () {
             const nameToCheck = $("#headerSpan").text().trim();
             if (!nameToCheck) return;
 
-            // --- CASE 1: PRIVATE CHAT (VIEWING USER INFO) ---
             if (currentRoomType === "private") {
                 const token = sessionStorage.getItem("jwtToken");
                 const res = await fetch(`/api/user/info/${encodeURIComponent(nameToCheck)}`, {
@@ -686,16 +499,20 @@
                 if (!res.ok) { alert("User info not found."); return; }
                 const data = await res.json();
 
-                // Show/Hide relevant fields
-                $("#nameP").show(); $("#lastOnlineP").show(); $("#groupsP").show();
-                $("#adminP").hide(); $("#membersContainer").hide();
+                $("#nameP").show();
+                $("#lastOnlineP").show();
+                $("#groupsP").show();
+                $("#adminP").hide();
+                $("#membersContainer").hide();
+                $("#addUserBtn").hide();
+                $("#deleteGroupBtn").hide();
+                $("#leaveGroupBtn").hide();
 
                 $("#infoName").text(data.username ?? nameToCheck);
                 $("#infoLastOnline").text(data.lastOnline ? new Date(data.lastOnline).toLocaleString() : "—");
 
-                // --- NEW: BUILD MUTUAL GROUPS LIST ---
                 const groupContainer = $("#infoGroups");
-                groupContainer.empty(); // Clear previous content
+                groupContainer.empty();
 
                 if (data.groups && data.groups.length > 0) {
                     const ul = $("<ul>").css({ "padding-left": "20px", "margin": "5px 0" });
@@ -707,38 +524,37 @@
                 } else {
                     groupContainer.text("—");
                 }
-                // -------------------------------------
 
-                // Hide Group Buttons
-                $("#addUserBtn").hide(); $("#deleteGroupBtn").hide(); $("#leaveGroupBtn").hide();
 
                 $("#userInfoPopup").fadeIn(150);
                 return;
             }
 
-            // --- CASE 2: GROUP CHAT (VIEWING GROUP MEMBERS) ---
             if (currentRoomType === "group") {
                 const token = sessionStorage.getItem("jwtToken");
                 const res = await fetch(`/api/group/${encodeURIComponent(nameToCheck)}`, {
                     headers: { "Authorization": "Bearer " + token }
                 });
 
-                if (!res.ok) { alert("Group info not found."); return; }
+                if (!res.ok) {
+                    alert("Group info not found.");
+                    return;
+                }
                 const g = await res.json();
 
-                // Show/Hide relevant fields
-                $("#nameP").show(); $("#lastOnlineP").hide(); $("#groupsP").hide();
-                $("#adminP").show(); $("#membersContainer").show();
+                $("#nameP").show();
+                $("#lastOnlineP").hide();
+                $("#groupsP").hide();
+                $("#adminP").show();
+                $("#membersContainer").show();
 
                 $("#infoName").text(g.name);
                 $("#infoAdmin").text(g.admin);
 
-                // --- CHECK IF I AM ADMIN ---
                 const tokenPayload = JSON.parse(atob(token.split('.')[1]));
                 const currentUser = tokenPayload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
                 const isAdmin = (g.admin === currentUser);
 
-                // --- BUILD MEMBER LIST ---
                 const container = $("#infoMembers");
                 container.empty();
 
@@ -748,19 +564,15 @@
                     g.members.forEach(member => {
                         const li = $("<li>").css({ "margin-bottom": "5px" });
 
-                        // Add Name
                         li.append(`<span>${member} </span>`);
 
-                        // IF ADMIN: Add Remove Button (❌)
                         if (isAdmin && member !== currentUser) {
                             const imgSrcClose = '@Url.Content("~/images/close.png")';
                             const removeBtn = $(`<span style="cursor:pointer; margin-left:10px;" title="Remove User"><img src="${imgSrcClose}" width="15" height="15" /></span>`);
 
-                            // ATTACH CLICK EVENT IMMEDIATELY
                             removeBtn.click(async function() {
                                  if (!confirm(`Remove ${member} from the group?`)) return;
 
-                                 // Call API
                                  const response = await fetch(
                                     `/api/group/${encodeURIComponent(g.name)}/users/${encodeURIComponent(member)}`,
                                     {
@@ -770,9 +582,7 @@
                                 );
 
                                 if (response.ok) {
-                                    // Success: Remove the <li> from the UI immediately
                                     li.remove();
-                                    // Also refresh background data
                                     loadGroups();
                                 } else {
                                     alert("Failed: " + await response.text());
@@ -788,7 +598,6 @@
                 }
                 container.append(ul);
 
-                // --- BUTTON VISIBILITY ---
                 if (isAdmin) {
                     $("#addUserBtn").show();
                     $("#deleteGroupBtn").show();
@@ -804,68 +613,73 @@
         });
 
 
+        $("#addUserBtn").off("click").on("click", async () => {
+            if (!currentRoom) return alert("Open a group first!");
 
-        $("#closeInfoPopup").on("click", function () {
-            $("#userInfoPopup").fadeOut(150);
-        });
+            const usernameToAdd = prompt("Enter the username you want to add:");
+            if (!usernameToAdd) return;
 
-
-                $("#profileDiv").on("click", async function() {
-            const username = $("#profileP").text().trim();
-
-            // Fill popup with own data
-            $("#infoName").text(username);
-            $("#infoGroups").text("Your Profile"); // Or fetch real groups
-
-            // SHOW the delete button because it's me
-            $("#deleteProfileBtn").show();
-
-            $("#profilePopup").fadeIn(150);
-        });
-
-        $("#closeProfilePopup").on("click", function () {
-            $("#profilePopup").fadeOut(150);
-        });
-
-
-
-                $("#deleteProfileBtn").click(async () => {
-            if (!confirm("Are you sure? This will permanently delete your account and you cannot login again.")) {
-                return;
-            }
-
+            const groupName = currentRoom;
             const token = sessionStorage.getItem("jwtToken");
 
-            try {
-                const response = await fetch(apiBase + "/delete", {
-                    method: "DELETE",
-                    headers: {
-                        "Authorization": "Bearer " + token
+            const response = await fetch("/api/group/addUser", {
+                method: "POST",
+                headers: {
+                    "Authorization": "Bearer " + token,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    groupName: groupName,
+                    username: usernameToAdd
+                })
+            });
+
+            if (response.ok) {
+                alert("User added!");
+
+                const membersList = $("#infoMembers ul");
+
+                if (membersList.text().includes("No members")) {
+                    membersList.empty();
+                }
+
+                const li = $("<li>").css({ "margin-bottom": "5px" });
+                li.append(`<span>${usernameToAdd} </span>`);
+
+                const imgSrcClose = '@Url.Content("~/images/close.png")';
+                const removeBtn = $(`<span style="cursor:pointer; margin-left:10px;" title="Remove User"><img src="${imgSrcClose}" width="15" height="15" /></span>`);
+
+                removeBtn.click(async function() {
+                     if (!confirm(`Remove ${usernameToAdd} from the group?`)) return;
+
+                     const delResponse = await fetch(
+                        `/api/group/${encodeURIComponent(groupName)}/users/${encodeURIComponent(usernameToAdd)}`,
+                        {
+                            method: "DELETE",
+                            headers: { "Authorization": "Bearer " + token }
+                        }
+                    );
+
+                    if (delResponse.ok) {
+                        li.remove(); 
+                        loadGroups();
+                    } else {
+                        alert("Failed: " + await delResponse.text());
                     }
                 });
 
-                if (response.ok) {
-                    alert("Account deleted. Goodbye!");
+                li.append(removeBtn);
 
-                    // Cleanup local session
-                    sessionStorage.removeItem("jwtToken");
-                    if (connection) await connection.stop();
+                membersList.append(li);
 
-                    // Reload page to show login screen
-                    location.reload();
-                } else {
-                    alert("Failed to delete account.");
-                }
-            } catch (err) {
-                console.error("Error deleting account:", err);
-                alert("An error occurred.");
+                loadGroups();
+            } else {
+                alert("Failed: " + await response.text());
             }
         });
 
 
-
-
-                $("#deleteGroupBtn").click(async () => {
+        $("#deleteGroupBtn").click(async () => {
             const groupName = $("#infoName").text().trim();
 
             if (!confirm(`Are you sure you want to delete the group "${groupName}"?`)) return;
@@ -881,7 +695,6 @@
                 if (response.ok) {
                     alert("Group deleted!");
                     $("#userInfoPopup").fadeOut();
-                    // SignalR "GroupDeleted" will handle the UI removal
                 } else {
                     alert("Failed: " + await response.text());
                 }
@@ -892,8 +705,7 @@
         });
 
 
-
-                $("#leaveGroupBtn").click(async () => {
+        $("#leaveGroupBtn").click(async () => {
             const groupName = $("#infoName").text().trim();
 
             if (!confirm(`Are you sure you want to leave "${groupName}"?`)) return;
@@ -913,7 +725,6 @@
                 if (response.ok) {
                     alert("You left the group.");
                     $("#userInfoPopup").fadeOut();
-                    // The "GroupRemoved" SignalR event will handle the UI cleanup automatically
                 } else {
                     alert("Failed: " + await response.text());
                 }
@@ -923,16 +734,53 @@
             }
         });
 
+        $("#profileDiv").on("click", async function() {
+            $("#deleteProfileBtn").show();
+            $("#profilePopup").fadeIn(150);
+        });
 
+        $("#deleteProfileBtn").click(async () => {
+            if (!confirm("Are you sure? This will permanently delete your account and you cannot login again.")) {
+                return;
+            }
 
+            const token = sessionStorage.getItem("jwtToken");
+
+            try {
+                const response = await fetch(apiBase + "/delete", {
+                    method: "DELETE",
+                    headers: {
+                        "Authorization": "Bearer " + token
+                    }
+                });
+
+                if (response.ok) {
+                    alert("Account deleted. Goodbye!");
+
+                    sessionStorage.removeItem("jwtToken");
+                    if (connection) await connection.stop();
+
+                    location.reload();
+                } else {
+                    alert("Failed to delete account.");
+                }
+            } catch (err) {
+                console.error("Error deleting account:", err);
+                alert("An error occurred.");
+            }
+        });
+
+        $("#closeInfoPopup").on("click", function () {
+            $("#userInfoPopup").fadeOut(150);
+        });
+
+        $("#closeProfilePopup").on("click", function () {
+            $("#profilePopup").fadeOut(150);
+        });
 
         $("#logOutBtn").click(async () => {
             location.reload();
         });
-
-
-
-
 
         window.addEventListener("beforeunload", () => {
             try {
@@ -945,8 +793,7 @@
             const blob = new Blob([token], { type: "text/plain" });
             navigator.sendBeacon("/api/user/disconnect", blob);
         });
-
+        
     </script>
 </body>
-
 </html>

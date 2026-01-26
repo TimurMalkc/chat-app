@@ -46,7 +46,6 @@ body {
     float: left;
     text-align: center;
     background-color: var(--frame);
-    
 }
 
 #chatDiv {
@@ -119,7 +118,6 @@ body {
     outline: none;
     border: none;
     caret-color: var(--border);
-    
 }
 
 .messageButton {
@@ -134,7 +132,6 @@ body {
     background-color: var(--hover);
 }
 
-
 #roomsHeadDiv {
     display: flex;
     align-items: center;
@@ -142,7 +139,6 @@ body {
     background-color: var(--frame);
     height: 50px;
     border-bottom: 0.1rem solid var(--border);
-
 }
 
 #roomsFootDiv {
@@ -223,7 +219,6 @@ body {
     font-size: 45px;
 }
 
-
 #chatSpan {
     color: var(--textcolorlight);
     font-size: 25px;
@@ -271,7 +266,6 @@ body {
     max-height: 150px;
     overflow-y: auto;
 }
-
 
 #addUserBtn {
     font-size: 15px;
@@ -345,7 +339,6 @@ strong{
     box-shadow: 0 0 15px rgba(0,0,0,0.4);
 }
 
-
 #closeProfilePopup {
     position: absolute;
     top: 20px;
@@ -395,9 +388,6 @@ strong{
     padding-left: 5px;
     display: inline-block;
 }
-
-
-
 
 #newGroupBtn {
     font-size: 25px;
@@ -461,7 +451,7 @@ strong{
     color: var(--hover);
 }
 
-.date-divider {
+.dateDivider {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -471,11 +461,9 @@ strong{
     font-weight: bold;
 }
 
-    .date-divider::before,
-    .date-divider::after {
-        content: '';
-        flex: 1;
-        border-bottom: 1px solid var(--chatscroll);
-        margin: 0 10px;
-       
-    }
+.dateDivider::before, .dateDivider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--chatscroll);
+    margin: 0 10px;
+}

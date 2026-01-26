@@ -10,8 +10,7 @@ namespace ChatApp.Hubs
 {
     public class ChatHub : Hub
     {
-        public static ConcurrentDictionary<string, string> UserConnections
-        = new ConcurrentDictionary<string, string>();
+        public static ConcurrentDictionary<string, string> UserConnections = new ConcurrentDictionary<string, string>();
         private readonly ChatService _chatService;
         private readonly GroupService _groupService;
 
@@ -20,7 +19,6 @@ namespace ChatApp.Hubs
             _chatService = chatService;
             _groupService = groupService;
         }
-
         private string GetPrivateRoomName(string user1, string user2)
         {
             return string.CompareOrdinal(user1, user2) < 0
@@ -42,7 +40,6 @@ namespace ChatApp.Hubs
         {
             await Groups.RemoveFromGroupAsync(Context.ConnectionId, roomName);
         }
-
         public async Task SendPrivateMessage(string otherUser, string message)
         {
             var username = Context.User.FindFirst(ClaimTypes.Name)?.Value;
@@ -60,7 +57,6 @@ namespace ChatApp.Hubs
 
             await Clients.Group(roomName).SendAsync("ReceiveMessage", username, message, msg.Timestamp);
         }
-
 
         public async Task SendGroupMessage(string groupName, string message)
         {
@@ -90,7 +86,6 @@ namespace ChatApp.Hubs
             var messages = await _chatService.GetMessagesByRoomAsync(groupName);
             await Clients.Caller.SendAsync("LoadChatHistory", messages);
         }
-
 
         public override async Task OnConnectedAsync()
         {

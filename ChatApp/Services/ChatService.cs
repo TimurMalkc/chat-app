@@ -23,12 +23,10 @@ namespace ChatApp.Services
             var update = Builders<User>.Update.Set(u => u.LastOnline, time);
             await _users.UpdateOneAsync(u => u.Username == username, update);
         }
-
         public async Task SaveMessageAsync(ChatMessage msg)
         {
             await _messages.InsertOneAsync(msg);
         }
-
         public async Task<List<ChatMessage>> GetMessagesByRoomAsync(string room)
         {
             return await _messages
