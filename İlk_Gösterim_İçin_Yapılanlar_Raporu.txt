@@ -1,4 +1,5 @@
-Bu projenin amacı SignalR kütüphanesinden faydalanarak Whatsapp Web veya Skype benzeri, gerçek zamanlı bir mesajlaşma uygulaması geliştirmektir.
+Bu projenin amacı SignalR kütüphanesinden faydalanarak Whatsapp Web veya Skype benzeri, gerçek zamanlı bir mesajlaşma uygulaması geliştirmektir. 
+(Normalde birinci gösterim için 2 ay önce yüklediğim bir dosya. Adını güncellediğim için yeni değişiklikler yüzünden tarihi yakın gözüküyor o yüzden açıklama notu ekledim.) 
 
 ŞU ANA KADAR TAMAMLANMIŞ ÖZELLİKLER:
 -Kullanıcılar SignalR kütüphanesi sayesinde gerçek zamanlı mesajlaşabilir.
@@ -13,3 +14,4 @@ Bu projenin amacı SignalR kütüphanesinden faydalanarak Whatsapp Web veya Skyp
 -Her kullanıcının yeni bir grup açma yetkisi vardır.
 -Kullanıcılar sisteme kayıtlı olan diğer bütün kullanıcıları görebilir ve mesaj atabilirler.
 -Kullanıcılar sadece kendi dahil oldukları grupları görebilir ve mesaj atabilirler.
+
