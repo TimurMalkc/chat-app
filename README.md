@@ -11,7 +11,6 @@ A real-time chat application built with ASP.NET Core and SignalR, supporting pri
 - **Private Chats** - Send and receive direct messages between users
 - **Group Chats** - Create groups and communicate with multiple users in real time
 - **Message History** - Store chat history persistently using MongoDB
-- **Online User Status** - View users' online/offline status in real time
 - **REST API** - Manage authentication and chat operations through ASP.NET Core Web API endpoints
 - **Responsive Interface** - Simple and responsive web interface for desktop and mobile devices
 
